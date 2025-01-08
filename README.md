@@ -4,7 +4,6 @@
 ![GitHub stars](https://img.shields.io/github/stars/sadmaxie/vcard-personal-portfolio-2025?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sadmaxie/vcard-personal-portfolio-2025?style=social)
 
-
 vCard is a fully responsive personal portfolio website, built using HTML, CSS, and JavaScript, with the latest update in 2025. This update adds dynamic data population from a data file, includes a downloadable CV button, and features a new contact form powered by Netlify. Additionally, it allows easy customization to add new sections such as Education, Certificates, and portfolio categories like System and Network.
 
 ## Demo
@@ -17,6 +16,15 @@ vCard is a fully responsive personal portfolio website, built using HTML, CSS, a
 Before you begin, ensure you have met the following requirements:
 
 * [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+
+### Linux and macOS:
+```bash
+sudo git clone https://github.com/sadmaxie/vcard-personal-portfolio-2025.git
+```
+### Windows:
+```bash
+git clone https://github.com/sadmaxie/vcard-personal-portfolio-2025.git
+```
 
 ## New Features in this Update
 
@@ -58,7 +66,7 @@ b. **JavaScript (JS)**:
 In the `data.json` file, add the new data under the relevant array (e.g., "education" array). Here's an example for adding items to your new section:
 
 ```json
-{
+
   "your-new-section-id": [
     {
       "title": "Sample Item Title",
@@ -70,15 +78,40 @@ In the `data.json` file, add the new data under the relevant array (e.g., "educa
       "description": "More details about the item.",
       "date": "February 2025"
     }
-  ]
-}
+  ],
+
 ```
 
-In the `script.js` file, the data is dynamically loaded, and you don’t need to modify the core logic. It will automatically pull data from the `data.json` file.
+Then, add the following code in the `script.js` file to dynamically populate your new section with data. Replace `your-new-section-id` with the ID you chose earlier:
+
+```javascript
+// ---------- your-new-section-id SECTION ----------
+const your-new-section-idSection = document.getElementById("your-new-section-id");
+
+// Map through your-new-section-id data and create timeline items
+const your-new-section-idElements = data["your-new-section-id"].map((edu) => {
+  const your-new-section-idElement = document.createElement("li");
+  your-new-section-idElement.classList.add("timeline-item");
+  your-new-section-idElement.innerHTML = `
+    <h4 class="h4 timeline-item-title">${edu.title}</h4>
+    <span>${edu.date}</span>
+    <p class="timeline-text">${edu.description}</p>
+  `;
+  return your-new-section-idElement;
+});
+
+// Append your-new-section-id elements to the your-new-section-id section
+your-new-section-idElements.forEach((your-new-section-idElement) => {
+  your-new-section-idSection.appendChild(your-new-section-idElement);
+});
+```
+
+**Helpful Tool**:  
+Use [Browserling's Text Replace Tool](https://www.browserling.com/tools/text-replace) to quickly replace `your-new-section-id` with the desired ID for your new section.
 
 **Note**:  
 - If you want to hide the `date` or `description` for any item, you can modify the item in `data.json` to exclude the `date` or `description` field, or comment it out. This will hide the respective information on the webpage.
-  
+
 ```json
 {
   "title": "Sample Item Title",
@@ -97,10 +130,8 @@ In the `index.html` file, go to the portfolio section and add new filter buttons
 <section class="projects">
   <ul class="filter-list">
     <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
-    <li class="filter-item"><button data-filter-btn>Applications</button></li>
-    <li class="filter-item"><button data-filter-btn>Web development</button></li>
-    <li class="filter-item"><button data-filter-btn>Network</button></li>
-    <li class="filter-item"><button data-filter-btn>System</button></li>
+    <li class="filter-item"><button data-filter-btn>Applications</button></li> <!-- Remove It If You Dont Need It -->
+    <li class="filter-item"><button data-filter-btn>your-new-button</button></li> <!-- Add Your New Button here -->
   </ul>
 
   <!-- Portfolio Filter Select -->
@@ -111,10 +142,8 @@ In the `index.html` file, go to the portfolio section and add new filter buttons
     </button>
     <ul class="select-list">
       <li class="select-item"><button data-select-item>All</button></li>
-      <li class="select-item"><button data-select-item>Applications</button></li>
-      <li class="select-item"><button data-select-item>Web development</button></li>
-      <li class="select-item"><button data-select-item>Network</button></li>
-      <li class="select-item"><button data-select-item>System</button></li>
+      <li class="select-item"><button data-select-item>Applications</button></li> <!-- Remove It If You Dont Need It -->
+      <li class="select-item"><button data-select-item>your-new-button</button></li>   <!-- Add Your New Button here -->
     </ul>
   </div>
 </section>
@@ -128,7 +157,7 @@ No need to modify anything in `script.js` for adding new categories. The portfol
 For example, in `data.json`, each project should have a `category` attribute like so:
 
 ```json
-{
+
   "portfolio": [
     {
       "title": "Smart Home System",
@@ -142,8 +171,8 @@ For example, in `data.json`, each project should have a `category` attribute lik
       "image": "./assets/images/projects/project-6.png",
       "link": "https://example.com"
     }
-  ]
-}
+  ],
+
 ```
 
 The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
@@ -158,3 +187,4 @@ If you want to contact me, fill out the contact form on the portfolio page, powe
 ## License
 
 MIT
+
