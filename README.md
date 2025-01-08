@@ -34,8 +34,8 @@ Before you begin, ensure you have met the following requirements:
 ### 1. Adding a New Tree Branch (e.g., Education, Certificates)
 If you want to add a new section under the resume (such as Education or Certificates), follow these steps:
 
-a. **HTML**:
-In the `index.html` file, you need to add a new section for the branch:
+a. **HTML**:  
+In the `index.html` file, you need to add a new section for the branch. You can write a name for the section title and give it a unique ID to be used in the JavaScript file. For example:
 
 ```html
 <!-- Add new section for another branch -->
@@ -50,127 +50,106 @@ In the `index.html` file, you need to add a new section for the branch:
 </section>
 ```
 
-b. **JavaScript (JS)**:
-In the `data.js` file, add new data under the relevant array (e.g., education array). In `script.js`, add logic to inject this data dynamically.
+**Where to modify**:
+- Change `Your New Section Title` to the title you want for your section (e.g., "Education", "Certificates").
+- Change `your-new-section-id` to a unique ID for the list (e.g., `education`, `certificates`).
 
-For example, in `data.js`:
+b. **JavaScript (JS)**:  
+In the `data.json` file, add the new data under the relevant array (e.g., "education" array). Here's an example for adding items to your new section:
 
-```javascript
-const yourNewSectionData = [
-  {
-    title: "Sample Item Title",
-    description: "Description of the item goes here.",
-    date: "January 2025"
-  },
-  {
-    title: "Another Item",
-    description: "More details about the item.",
-    date: "February 2025"
-  }
-];
+```json
+{
+  "your-new-section-id": [
+    {
+      "title": "Sample Item Title",
+      "description": "Description of the item goes here.",
+      "date": "January 2025"
+    },
+    {
+      "title": "Another Item",
+      "description": "More details about the item.",
+      "date": "February 2025"
+    }
+  ]
+}
 ```
 
-In `script.js`, add the function to load the new section dynamically:
+In the `script.js` file, the data is dynamically loaded, and you don’t need to modify the core logic. It will automatically pull data from the `data.json` file.
 
-```javascript
-function loadNewSectionData() {
-  const newSectionList = document.getElementById('your-new-section-id');
-  yourNewSectionData.forEach(item => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('timeline-item');
-    
-    const title = document.createElement('h4');
-    title.textContent = item.title;
-    
-    const description = document.createElement('p');
-    description.textContent = item.description;
-    
-    const date = document.createElement('time');
-    date.textContent = item.date;
-
-    listItem.append(title, description, date);
-    newSectionList.appendChild(listItem);
-  });
+**Note**:  
+- If you want to hide the `date` or `description` for any item, you can modify the item in `data.json` to exclude the `date` or `description` field, or comment it out. This will hide the respective information on the webpage.
+  
+```json
+{
+  "title": "Sample Item Title",
+  "description": "",  // Empty description will hide the description.
+  "date": ""          // Empty date will hide the date.
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  loadNewSectionData();
-});
 ```
 
 ### 2. Adding a New Category in the Portfolio (e.g., System, Network)
 To add a new category to the portfolio section, such as System or Network, follow these steps:
 
-a. **HTML**:
-In the portfolio section, add new filter buttons for the new categories:
+a. **HTML**:  
+In the `index.html` file, go to the portfolio section and add new filter buttons for the new categories:
 
 ```html
-<li class="filter-item">
-  <button data-filter-btn>System</button> <!-- New category -->
-</li>
+<section class="projects">
+  <ul class="filter-list">
+    <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
+    <li class="filter-item"><button data-filter-btn>Applications</button></li>
+    <li class="filter-item"><button data-filter-btn>Web development</button></li>
+    <li class="filter-item"><button data-filter-btn>Network</button></li>
+    <li class="filter-item"><button data-filter-btn>System</button></li>
+  </ul>
 
-<li class="filter-item">
-  <button data-filter-btn>Network</button> <!-- Another category -->
-</li>
+  <!-- Portfolio Filter Select -->
+  <div class="filter-select-box">
+    <button class="filter-select" data-select>
+      <div class="select-value" data-selecct-value>Select category</div>
+      <div class="select-icon"><ion-icon name="chevron-down"></ion-icon></div>
+    </button>
+    <ul class="select-list">
+      <li class="select-item"><button data-select-item>All</button></li>
+      <li class="select-item"><button data-select-item>Applications</button></li>
+      <li class="select-item"><button data-select-item>Web development</button></li>
+      <li class="select-item"><button data-select-item>Network</button></li>
+      <li class="select-item"><button data-select-item>System</button></li>
+    </ul>
+  </div>
+</section>
 ```
 
-b. **JavaScript (JS)**:
-In the `data.js` file, ensure each portfolio item has a `category` attribute (e.g., `category: "System"`, `category: "Network"`).
+You can add more categories by replicating the `<li>` elements inside the `filter-list` and `select-list`.
 
-For example, in `data.js`:
+b. **JavaScript (JS)**:  
+No need to modify anything in `script.js` for adding new categories. The portfolio items are filtered automatically based on the `data-category` attribute, which corresponds to the categories you defined in the HTML.
 
-```javascript
-const portfolioItems = [
-  {
-    title: "System Project 1",
-    description: "This is a system-related project.",
-    category: "System",
-    link: "https://link-to-project.com"
-  },
-  {
-    title: "Network Project 1",
-    description: "This is a network-related project.",
-    category: "Network",
-    link: "https://link-to-project.com"
-  }
-];
-```
+For example, in `data.json`, each project should have a `category` attribute like so:
 
-In `script.js`, modify the portfolio filtering logic to recognize the new categories:
-
-```javascript
-function filterPortfolio(category) {
-  const filteredItems = portfolioItems.filter(item => item.category === category);
-  
-  const portfolioList = document.getElementById('portfolio');
-  portfolioList.innerHTML = '';  // Clear current portfolio items
-
-  filteredItems.forEach(item => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('portfolio-item');
-    
-    const title = document.createElement('h4');
-    title.textContent = item.title;
-    
-    const description = document.createElement('p');
-    description.textContent = item.description;
-
-    const link = document.createElement('a');
-    link.href = item.link;
-    link.textContent = 'View Project';
-
-    listItem.append(title, description, link);
-    portfolioList.appendChild(listItem);
-  });
+```json
+{
+  "portfolio": [
+    {
+      "title": "Smart Home System",
+      "category": "System",
+      "image": "./assets/images/projects/project-5.png",
+      "link": "https://example.com"
+    },
+    {
+      "title": "Networking Project 1",
+      "category": "Network",
+      "image": "./assets/images/projects/project-6.png",
+      "link": "https://example.com"
+    }
+  ]
 }
-
-document.querySelectorAll('[data-filter-btn]').forEach(button => {
-  button.addEventListener('click', () => {
-    const category = button.textContent.trim();
-    filterPortfolio(category); // Filter based on clicked category
-  });
-});
 ```
+
+The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
+
+**Note**:  
+- If you don’t want to show a project link, simply leave the `link` attribute empty in the `data.json` file, and the project will appear without a clickable link.
 
 ## Contact
 
