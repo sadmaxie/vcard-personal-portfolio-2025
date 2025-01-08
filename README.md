@@ -3,7 +3,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/sadmaxie/vcard-personal-portfolio-2025)
 ![GitHub stars](https://img.shields.io/github/stars/sadmaxie/vcard-personal-portfolio-2025?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sadmaxie/vcard-personal-portfolio-2025?style=social)
-[![Twitter Follow](https://img.shields.io/twitter/follow/sadmaxie_?style=social)](https://twitter.com/intent/follow?screen_name=sadmaxie_)
 
 vCard is a fully responsive personal portfolio website, built using HTML, CSS, and JavaScript, with the latest update in 2025. This update adds dynamic data population from a data file, includes a downloadable CV button, and features a new contact form powered by Netlify. Additionally, it allows easy customization to add new sections such as Education, Certificates, and portfolio categories like System and Network.
 
