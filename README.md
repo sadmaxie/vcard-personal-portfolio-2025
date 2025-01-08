@@ -174,7 +174,7 @@ document.querySelectorAll('[data-filter-btn]').forEach(button => {
 
 ## Contact
 
-If you want to contact me, fill out the contact form on the portfolio page, powered by [Netlify](https://www.netlify.com/). Alternatively, you can reach me directly through my [GitHub](https://github.com/sadmaxie).
+If you want to contact me, fill out the contact form on the portfolio page, powered by [Netlify](https://ahmet-abed.netlify.app/). Alternatively, you can reach me directly through my [GitHub](https://github.com/sadmaxie).
 
 ## License
 
