@@ -1,0 +1,266 @@
+{
+  "siteInfo": {
+       "title": "Ali Öztürk",
+        "logo": "./assets/images/logo.svg"
+    },
+    "socialLinks": [
+        {
+            "platform": "GitHub",
+            "url": "",
+            "icon": "logo-github"
+        },
+        {
+            "platform": "Reddit",
+            "url": "",
+            "icon": "logo-reddit"
+        },
+        {
+            "platform": "Instagram",
+            "url": "",
+            "icon": "logo-instagram"
+        },
+        {
+            "platform": "Discord",
+            "url": "",
+            "icon": "logo-Discord"
+        }
+    ],
+    "cv": {
+        "downloadUrl": ""
+    },
+    "aboutMe": {
+        "name": "Ali Öztürk Yılmaz",
+        "title": "Full Stack Developer",
+        "description1": "I am a passionate developer from Istanbul, Turkey, with a focus on creating high-performing web and mobile applications. My career has been shaped by a dedication to learning new technologies and delivering projects that push the boundaries of what's possible.",
+        "description2": "From building responsive websites to crafting mobile applications, my experiences range from startup environments to large-scale enterprise solutions. I thrive on finding creative solutions to complex challenges while ensuring that users have a seamless experience.",
+        "description3": "I am constantly evolving my skills and am driven by the desire to develop innovative products that make a real impact."
+    },
+    "contacts": {
+        "email": "ali.ozturk@example.com",
+        "phone": "+90 (555) 123-4567",
+        "birthday": "1995-04-15",
+        "location": "Istanbul, Turkey"
+    },
+    "whatIDo": [
+        {
+            "title": "Web Development",
+            "description": "Building dynamic websites with modern frameworks and tools, ensuring fast, scalable, and responsive designs.",
+            "icon": "./assets/images/icon-cyber.svg"
+        },
+        {
+            "title": "App Development",
+            "description": "Creating intuitive and high-performance mobile apps, focusing on user experience and feature-rich applications.",
+            "icon": "./assets/images/icon-project.svg"
+        },
+        {
+            "title": "UI/UX Design",
+            "description": "Designing user-centric interfaces that prioritize accessibility, usability, and engaging visual design.",
+            "icon": "./assets/images/icon-dev.svg"
+        },
+        {
+            "title": "Database Management",
+            "description": "Designing and optimizing databases for high availability, scalability, and performance.",
+            "icon": "./assets/images/icon-app.svg"
+        },
+        {
+            "title": "Freelance Solutions",
+            "description": "Providing tailored IT solutions and consultancy services to small businesses and individuals.",
+            "icon": "./assets/images/icon-freelan.svg"
+        },
+        {
+            "title": "Cloud Computing",
+            "description": "Building and managing cloud infrastructure to scale and maintain modern applications efficiently.",
+            "icon": "./assets/images/icon-net.svg"
+        }
+    ],
+    "testimonials": [
+        {
+            "avatar": "./assets/images/avatar-1.png",
+            "name": "Emre Kılıç",
+            "text": "Ali exceeded our expectations with his development work on our mobile app. His deep understanding of both front-end and back-end technologies allowed him to deliver a seamless, high-quality product.",
+            "link": "",
+            "date": "2023-11-10"
+        },
+        {
+            "avatar": "./assets/images/avatar-2.png",
+            "name": "Alece Nulim",
+            "text": "Ali exceeded our expectations with his development work on our mobile app. His deep understanding of both front-end and back-end technologies allowed him to deliver a seamless, high-quality product.",
+            "link": "",
+            "date": "2023-11-10"
+        }
+    ],
+    "clients": [
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-1-color.png",
+            "url": "https://techverse.com"
+        },
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-2-color.png",
+            "url": "https://techverse.com"
+        },
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-3-color.png",
+            "url": "https://techverse.com"
+        },
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-4-color.png",
+            "url": "https://techverse.com"
+        },
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-5-color.png",
+            "url": "https://techverse.com"
+        },
+        {
+            "name": "Techverse Ltd.",
+            "image": "./clints/logo-6-color.png",
+            "url": "https://techverse.com"
+        }
+    ],
+    "education": [
+        {
+            "institution": "Tech University",
+            "years": "2014 — 2018",
+            "description": "Graduated with a Bachelor's in Computer Science, where I developed a passion for software engineering and started contributing to open-source projects."
+        },
+        {
+            "institution": "Istanbul Technical University",
+            "years": "2019 — Present",
+            "description": "Currently pursuing a Master's in Computer Engineering, focusing on AI and machine learning to further my expertise in next-generation technologies."
+        }
+    ],
+    "certificate": [
+        {
+            "institution": "Advanced Web Development",
+            "years": "2019",
+            "description": "Acquired advanced knowledge of full-stack development, including server-side frameworks and JavaScript optimization."
+        },
+        {
+            "institution": "AWS Certified Solutions Architect",
+            "years": "2021",
+            "description": "Completed a certification in designing cloud architectures using AWS tools and services to deploy scalable applications."
+        },
+        {
+            "institution": "Google UX Design Certification",
+            "years": "2022",
+            "description": "Gained in-depth knowledge of UX design principles, including user research, wireframing, and prototyping for mobile apps."
+        }
+    ],
+    "experience": [
+        {
+            "title": "Junior Web Developer",
+            "role": "Web Developer",
+            "years": "2018 — 2020",
+            "description": "Built and maintained client websites, working closely with teams to ensure a responsive, user-friendly experience. Focused on improving website speed and SEO."
+        },
+        {
+            "title": "Freelance Developer",
+            "role": "Freelancer",
+            "years": "2020 — Present",
+            "description": "Provide custom software solutions, including web development, app development, and automation for clients across various industries."
+        },
+        {
+            "title": "Senior Software Developer",
+            "role": "Software Developer",
+            "years": "2021 — 2023",
+            "description": "Led the development of scalable software systems, focusing on team collaboration and agile project management."
+        }
+    ],
+    "skills": [
+        {
+            "name": "React",
+            "level": 90
+        },
+        {
+            "name": "Node.js",
+            "level": 70
+        },
+        {
+            "name": "Swift",
+            "level": 80
+        },
+        {
+            "name": "SQL",
+            "level": 60
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "PhotoGallery App",
+            "category": "Applications",
+            "image": "./assets/images/projects/project-1.jpg",
+            "link": "https://weather-dashboard.netlify.app"
+        },
+        {
+            "title": "Weather Dashboard",
+            "category": "Web development",
+            "image": "./assets/images/projects/project-2.png",
+            "link": ""
+        },
+        {
+            "title": "E-Commerce Website",
+            "category": "Web development",
+            "image": "./assets/images/projects/project-3.jpg",
+            "link": ""
+        },
+        {
+            "title": "Task Manager App",
+            "category": "Applications",
+            "image": "./assets/images/projects/project-4.png",
+            "link": ""
+        },
+        {
+            "title": "Smart Home System",
+            "category": "System",
+            "image": "./assets/images/projects/project-5.png",
+            "link": ""
+        },
+        {
+            "title": "Cloud Infrastructure Setup",
+            "category": "Network",
+            "image": "./assets/images/projects/project-6.png",
+            "link": ""
+        }
+    ],
+    "blog": [
+        {
+            "title": "Mastering React",
+            "category": "React",
+            "date": "01-10-2021",
+            "image": "./assets/images/blog/blog-1.jpg",
+            "description": "A comprehensive guide to learning React and building dynamic web applications.",
+            "link": "https://example.com/mastering-react"
+        },
+        {
+            "title": "Understanding Cloud Computing",
+            "category": "Cloud",
+            "date": "03-15-2022",
+            "image": "./assets/images/blog/blog-2.jpg",
+            "description": "An introduction to cloud technologies and how they are transforming businesses today.",
+            "link": ""
+        },
+        {
+            "title": "Building Scalable APIs",
+            "category": "Backend",
+            "date": "08-20-2022",
+            "image": "./assets/images/blog/blog-3.jpg",
+            "description": "Learn how to design and build RESTful APIs for scalable applications.",
+            "link": ""
+        },
+        {
+            "title": "UX Design Principles",
+            "category": "Design",
+            "date": "11-01-2023",
+            "image": "./assets/images/blog/blog-4.jpg",
+            "description": "Essential principles for designing intuitive and engaging user experiences.",
+            "link": ""
+        }
+    ],
+    "map": {
+        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.8885054174!2d28.847372857272237!3d41.00546324296916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVs!5e0!3m2!1sen!2str!4v1733010990659!5m2!1sen!2str"
+    }
+}
