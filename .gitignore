@@ -1,1 +1,41 @@
-.qodo
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js dependencies (if using npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build and cache directories
+dist/
+build/
+.cache/
+.out/
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.swn
+
+# IDE-specific files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Git-related
+.git/
+.gitignore
+
