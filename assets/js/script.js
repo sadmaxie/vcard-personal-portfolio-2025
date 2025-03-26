@@ -302,51 +302,167 @@ fetch("./assets/data/data.json")
       skillsSection.appendChild(skillElement);
     });
 
-    // ---------- PORTFOLIO SECTION ----------
 
+    // ---------- PORTFOLIO SECTION WITH NO-INTERACTION SUPPORT ----------
+
+    // Portfolio section container
     const portfolioSection = document.getElementById("portfolio");
 
-    const projectElements = data.portfolio.map((project) => {
+    // Loop through projects and create project elements
+    data.portfolio.forEach((project) => {
       const projectElement = document.createElement("li");
       projectElement.classList.add("project-item", "active");
       projectElement.setAttribute("data-filter-item", "");
       projectElement.setAttribute("data-category", project.category);
 
-      // Build the content structure
-      let iconBox = `
-    <div class="project-item-icon-box">
-      ${project.link ? `
-        <a href="${project.link}" target="_blank" rel="noopener noreferrer">
-          <img src="./assets/images/icon-eye.svg" alt="View project" class="icon-eye">
-        </a>
-      ` : ""} <!-- No eye icon if no link -->
-      <img src="./assets/images/icon-images.svg" alt="Open image" class="open-image-modal">
-    </div>
-  `;
+      // Determine if project has images or a link
+      const hasImages = project.images && Array.isArray(project.images) && project.images.length > 0;
+      const hasLink = !!project.link;
 
+      // ---------- ICON BOX SETUP ----------
+      let iconBoxContent = "";
+
+      // Add link icon if project has a link
+      if (hasLink) {
+        iconBoxContent += `
+      <a href="${project.link}" target="_blank" rel="noopener noreferrer">
+        <img src="./assets/images/icon-eye.svg" alt="View project" class="icon-eye">
+      </a>`;
+      }
+
+      // Add gallery icon if project has images
+      if (hasImages) {
+        iconBoxContent += `<img src="./assets/images/icon-images.svg" alt="Open gallery" class="open-gallery-icon">`;
+      }
+
+      const iconBoxHtml = iconBoxContent
+        ? `<div class="project-item-icon-box">${iconBoxContent}</div>`
+        : "";
+
+      // ---------- PROJECT CONTENT ----------
       const content = `
     <figure class="project-img">
-      ${iconBox}
-      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+      ${iconBoxHtml}
+      <img src="${project.projectPhoto || "./assets/images/placeholder.png"}" alt="${project.title}" loading="lazy" />
     </figure>
     <h3 class="project-title">${project.title}</h3>
     <p class="project-category">${project.category}</p>
   `;
 
-      // Handle whether the project has a link or not
-      projectElement.innerHTML = project.link
-        ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer">${content}</a>`
-        : `<div>${content}</div>`;
+      // Wrap project content in a div for better structure
+      projectElement.innerHTML = `<div>${content}</div>`;
 
-      return projectElement;
+      // Store image data in dataset for gallery functionality
+      projectElement.dataset.images = JSON.stringify(hasImages ? project.images : []);
+
+      // Add 'no-interaction' class if project has no link or images
+      if (!hasLink && !hasImages) {
+        projectElement.classList.add("no-interaction");
+      }
+
+      // Append project element to portfolio section
+      portfolioSection.appendChild(projectElement);
     });
 
-    // Append projects to the section
-    projectElements.forEach((projectElement) => portfolioSection.appendChild(projectElement));
+    // ---------- IMAGE GALLERY MODAL SETUP ----------
 
+    // Create gallery modal overlay (only if it doesn't exist)
+    let galleryModalOverlay = document.querySelector(".modal-overlay");
+    if (!galleryModalOverlay) {
+      galleryModalOverlay = document.createElement("div");
+      galleryModalOverlay.classList.add("modal-overlay");
+      galleryModalOverlay.innerHTML = `
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <button class="modal-prev">&#10094;</button>
+      <img src="" alt="Project Image" class="main-gallery-image">
+      <button class="modal-next">&#10095;</button>
+      <div class="thumbnail-track"></div>
+    </div>
+  `;
+      document.body.appendChild(galleryModalOverlay);
+    }
 
-    // Append all projects
-    projectElements.forEach((projectElement) => portfolioSection.appendChild(projectElement));
+    let currentImageIndex = 0;
+    let currentImages = [];
+
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("open-gallery-icon")) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const projectElement = e.target.closest("li");
+        currentImages = JSON.parse(projectElement.dataset.images);
+        currentImageIndex = 0;
+
+        const modalImage = galleryModalOverlay.querySelector(".main-gallery-image");
+        modalImage.src = currentImages[currentImageIndex];
+
+        galleryModalOverlay.classList.add("active");
+
+        const thumbnailTrack = galleryModalOverlay.querySelector(".thumbnail-track");
+        thumbnailTrack.innerHTML = currentImages
+          .map(
+            (img, index) =>
+              `<img src="${img}" data-index="${index}" class="thumbnail ${index === currentImageIndex ? "active" : ""
+              }">`
+          )
+          .join("");
+
+        thumbnailTrack.querySelectorAll(".thumbnail").forEach((thumb) => {
+          thumb.addEventListener("click", (e) => {
+            currentImageIndex = Number(e.target.dataset.index);
+            modalImage.src = currentImages[currentImageIndex];
+            updateActiveThumbnail(currentImageIndex);
+          });
+        });
+
+        document.body.classList.add("modal-open");
+      }
+
+      if (
+        e.target === galleryModalOverlay ||
+        e.target.classList.contains("modal-close")
+      ) {
+        galleryModalOverlay.classList.remove("active");
+        document.body.classList.remove("modal-open");
+      }
+
+      if (e.target.classList.contains("modal-next")) {
+        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        galleryModalOverlay.querySelector(".main-gallery-image").src =
+          currentImages[currentImageIndex];
+        updateActiveThumbnail(currentImageIndex);
+      }
+
+      if (e.target.classList.contains("modal-prev")) {
+        currentImageIndex =
+          (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        galleryModalOverlay.querySelector(".main-gallery-image").src =
+          currentImages[currentImageIndex];
+        updateActiveThumbnail(currentImageIndex);
+      }
+    });
+
+    function updateActiveThumbnail(index) {
+      const thumbnails = galleryModalOverlay.querySelectorAll(".thumbnail");
+      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
+      thumbnails[index].classList.add("active");
+    }
+
+    // Add blur effect to background
+    const style = document.createElement("style");
+    style.innerHTML = `
+  .modal-overlay.active {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  body.modal-open {
+    overflow: hidden;
+  }
+`;
+
+    document.head.appendChild(style);
 
     // ---------- MODAL SETUP ----------
 
@@ -396,7 +512,6 @@ fetch("./assets/data/data.json")
         document.body.classList.remove("modal-open");
       }
     });
-
 
     // ---------- BLOG SECTION ----------
 

@@ -28,14 +28,16 @@ git clone https://github.com/sadmaxie/vcard-personal-portfolio-2025.git
 
 ## New Features in this Update
 
-- **Data File Configuration**: You can now manage all your personal details (such as social links, portfolio projects, CV, etc.) through a centralized data file.
-- **Download CV Button**: A new feature allows visitors to download your CV directly from the portfolio site.
-- **Updated Contact Me Section**: The "Contact Me" form now works seamlessly with Netlify for easy form submissions and management.
-- **Add New Sections Dynamically**: You can now add new sections (such as Education or Certificates) under your resume with dynamic content injection via JavaScript and a data file.
-- **Add New Categories to Portfolio**: You can easily add new categories like "System" or "Network" to the portfolio section, including automatic filtering functionality.
-- **Link for Testimonials**: You can now add the link to the CV or profile of any testimonial author who has commented on your portfolio.
-- **Clickable Project Links**: In the portfolio section, projects now feature clickable links. If a project has an associated link, you can click on it to open the project in a new tab.
-- **Clickable Blog Links**: The blog section now supports clickable links. You can add a link to any blog post or resource, and users can click on it to open the blog or resource in a new tab.
+-   **Data File Configuration**: You can now manage all your personal details (such as social links, portfolio projects, CV, etc.) through a centralized data file.
+-   **Download CV Button**: A new feature allows visitors to download your CV directly from the portfolio site.
+-   **Updated Contact Me Section**: The "Contact Me" form now works seamlessly with Netlify for easy form submissions and management.
+-   **Add New Sections Dynamically**: You can now add new sections (such as Education or Certificates) under your resume with dynamic content injection via JavaScript and a data file.
+-   **Add New Categories to Portfolio**: You can easily add new categories like "System" or "Network" to the portfolio section, including automatic filtering functionality.
+-   **Link for Testimonials**: You can now add the link to the CV or profile of any testimonial author who has commented on your portfolio.
+-   **Clickable Project Links**: In the portfolio section, projects now feature clickable links. If a project has an associated link, you can click on it to open the project in a new tab.
+-   **Clickable Blog Links**: The blog section now supports clickable links. You can add a link to any blog post or resource, and users can click on it to open the blog or resource in a new tab.
+-   **Project Photo Gallery**: Each project in the portfolio can now include a photo gallery, displaying multiple images related to the project.
+-   **Enhanced Customization**: The portfolio is now more customizable, allowing for easier adjustments to layout, styling, and content to match your personal brand.
 
 ## Instructions
 
@@ -177,8 +179,59 @@ For example, in `data.json`, each project should have a `category` attribute lik
 
 The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
 
+### Adding Links and Images to Your Projects
+
+You can configure each project to include a link, an image, or both by updating `data.json`. Everything integrates smoothly without editing the JavaScript.
+
+### Example `data.json` Structure
+
+```json
+"portfolio": [
+  {
+    "title": "Weather Dashboard",
+    "category": "Web Development",
+    "projectPhoto": "./assets/images/projects/project-1.png",
+    "images": [
+      "./assets/images/projects/project-1-1.png",
+      "./assets/images/projects/project-1-2.png"
+    ],
+    "link": "https://weather-dashboard.netlify.app"
+  },
+  {
+    "title": "Personal Portfolio",
+    "category": "Design",
+    "projectPhoto": "./assets/images/projects/project-2.png",
+    "images": [],
+    "link": ""
+  }
+]
+```
+
+### Configuration Breakdown
+
+- **`title`**: The project's name, displayed below the image.
+- **`category`**: Determines how the project is filtered.
+- **`projectPhoto`**: The main thumbnail displayed for the project.
+- **`images`**: An array of images shown in the project’s gallery modal.
+- **`link`**: Optional. If a link is provided, an 'eye' icon appears, linking to the project.
+
+### Supported Scenarios
+
+- **Project with both link and images:**
+   - The eye icon links to the project, and the gallery icon opens multiple images.
+
+- **Project with only a link:**
+   - The eye icon appears without a gallery icon.
+
+- **Project with only images:**
+   - The gallery icon appears, but no eye icon.
+
+- **Project with neither link nor images:**
+   - No icons appear — only a static thumbnail is displayed.
+
+
 **Note**:  
-- If you don’t want to show a project link, simply leave the `link` attribute empty in the `data.json` file, and the project will appear without a clickable link.
+- To hide the project link, leave the `link` field empty in `data.json`, and the project will appear without a clickable link.
 
 ## Contact
 
@@ -187,4 +240,6 @@ If you want to contact me, fill out the contact form on the portfolio page, powe
 ## License
 
 MIT
+
+
 

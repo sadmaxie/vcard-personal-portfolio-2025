@@ -192,31 +192,51 @@
         {
             "title": "Weather Dashboard",
             "category": "Web development",
-            "image": "./assets/images/projects/project-2.png",
+            "projectPhoto": "./assets/images/projects/project-1.jpg",
+            "images": [
+                "./assets/images/projects/project-7.png",
+                "./assets/images/projects/project-8.jpg",
+                "./assets/images/projects/project-9.png"
+            ],
+            "link": "https://weather-dashboard.netlify.app"
+        },
+        {
+            "title": "Weather Dashboard",
+            "category": "Web development",
+            "projectPhoto": "./assets/images/projects/project-2.png",
+            "image": "",
             "link": "https://weather-dashboard.netlify.app"
         },
         {
             "title": "E-Commerce Website",
             "category": "Web development",
-            "image": "./assets/images/projects/project-3.jpg",
+            "projectPhoto": "./assets/images/projects/project-3.jpg",
+            "images": [
+                "./assets/images/projects/project-2.png",
+                "./assets/images/projects/project-5.png",
+                "./assets/images/projects/project-4.png"
+            ],
             "link": ""
         },
         {
             "title": "Task Manager App",
             "category": "Applications",
-            "image": "./assets/images/projects/project-4.png",
+            "projectPhoto": "./assets/images/projects/project-4.png",
+            "image": "",
             "link": ""
         },
         {
             "title": "Smart Home System",
             "category": "System",
-            "image": "./assets/images/projects/project-5.png",
+            "projectPhoto": "./assets/images/projects/project-5.png",
+            "image": "",
             "link": ""
         },
         {
             "title": "Cloud Infrastructure Setup",
             "category": "Network",
-            "image": "./assets/images/projects/project-6.png",
+            "projectPhoto": "./assets/images/projects/project-6.png",
+            "image": "",
             "link": ""
         }
     ],
