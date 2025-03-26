@@ -160,30 +160,33 @@ For example, in `data.json`, each project should have a `category` attribute lik
 
 ```json
 
-  "portfolio": [
-    {
-      "title": "Smart Home System",
-      "category": "System",
-      "image": "./assets/images/projects/project-5.png",
-      "link": "https://example.com"
-    },
-    {
-      "title": "Networking Project 1",
-      "category": "Network",
-      "image": "./assets/images/projects/project-6.png",
-      "link": "https://example.com"
-    }
-  ],
+"portfolio": [
+  {
+    "title": "Smart Home System",
+    "category": "System",
+    "projectPhoto": "./assets/images/projects/project-1.png",
+    "images": [
+      "./assets/images/projects/project-1-1.png",
+      "./assets/images/projects/project-1-2.png"
+    ],
+    "link": "https://example.com"
+  },
+  {
+    "title": "Networking Project 1",
+    "category": "Network",
+    "projectPhoto": "./assets/images/projects/project-2.png",
+    "images": [],
+    "link": ""
+  }
+]
 
 ```
 
 The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
 
-### Adding Links and Images to Your Projects
+### 3. Adding Links and Images to Your Projects
 
 You can configure each project to include a link, an image, or both by updating `data.json`. Everything integrates smoothly without editing the JavaScript.
-
-### Example `data.json` Structure
 
 ```json
 "portfolio": [
@@ -207,7 +210,7 @@ You can configure each project to include a link, an image, or both by updating 
 ]
 ```
 
-### Configuration Breakdown
+**Configuration Breakdown**
 
 - **`title`**: The project's name, displayed below the image.
 - **`category`**: Determines how the project is filtered.
@@ -215,7 +218,7 @@ You can configure each project to include a link, an image, or both by updating 
 - **`images`**: An array of images shown in the project’s gallery modal.
 - **`link`**: Optional. If a link is provided, an 'eye' icon appears, linking to the project.
 
-### Supported Scenarios
+**Supported Scenarios**
 
 - **Project with both link and images:**
    - The eye icon links to the project, and the gallery icon opens multiple images.
@@ -232,6 +235,7 @@ You can configure each project to include a link, an image, or both by updating 
 
 **Note**:  
 - To hide the project link, leave the `link` field empty in `data.json`, and the project will appear without a clickable link.
+- Same thing goes for images.
 
 ## Contact
 
