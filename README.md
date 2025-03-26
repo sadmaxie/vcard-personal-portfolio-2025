@@ -179,7 +179,7 @@ For example, in `data.json`, each project should have a `category` attribute lik
 
 The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
 
-### Adding Links and Images to Your Projects
+### 3. Adding Links and Images to Your Projects
 
 You can configure each project to include a link, an image, or both by updating `data.json`. Everything integrates smoothly without editing the JavaScript.
 
