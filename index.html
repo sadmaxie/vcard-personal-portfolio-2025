@@ -22,311 +22,315 @@
 </head>
 
 <body>
-  <!-- Main Container -->
-  <main>
-    <!-- Sidebar Section -->
-    <aside class="sidebar" data-sidebar>
-      <!-- Sidebar Info (Avatar and Personal Info) -->
-      <div class="sidebar-info">
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80" />
-        </figure>
+  <div class="main-container">
+    <!-- Main Container -->
+    <main>
+      <!-- Sidebar Section -->
+      <aside class="sidebar" data-sidebar>
+        <!-- Sidebar Info (Avatar and Personal Info) -->
+        <div class="sidebar-info">
+          <figure class="avatar-box">
+            <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80" />
+          </figure>
 
-        <div class="info-content">
-          <!-- Name and Title -->
-          <h1 class="name" id="name">Loading...</h1>
-          <p id="title" class="title">Loading...</p>
+          <div class="info-content">
+            <!-- Name and Title -->
+            <h1 class="name" id="name">Loading...</h1>
+            <p id="title" class="title">Loading...</p>
+          </div>
+
+          <!-- Show Contacts Button -->
+          <button class="info_more-btn" data-sidebar-btn>
+            <span>Show Contacts</span>
+            <ion-icon name="chevron-down"></ion-icon>
+          </button>
         </div>
 
-        <!-- Show Contacts Button -->
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-      </div>
-
-      <!-- Sidebar Contacts Info -->
-      <div class="sidebar-info_more">
-        <div class="separator"></div>
-        <ul class="contacts-list">
-          <!-- Email Contact -->
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-              <a id="email" href="#" class="contact-link">Loading...</a>
-            </div>
-          </li>
-
-          <!-- Phone Contact -->
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-              <a id="phone" href="#" class="contact-link">Loading...</a>
-            </div>
-          </li>
-
-          <!-- Birthday Contact -->
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-              <time id="birthday" datetime="">Loading...</time>
-            </div>
-          </li>
-
-          <!-- Location Contact -->
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-              <address id="location">Loading...</address>
-            </div>
-          </li>
-        </ul>
-
-        <!-- Social Links -->
-        <div class="separator"></div>
-        <ul id="social-links" class="social-list"></ul>
-      </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <div class="main-content">
-      <!-- Navbar -->
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <!-- Navigation Links -->
-          <li class="navbar-item">
-            <button class="navbar-link active" data-nav-link>About</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-          <li class="navbar-item">
-            <a id="cv-download-link" class="navbar-link" download>
-              CV
-              <img src="./assets/images/icon-download.svg" alt="Download" class="download-icon">
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- About Section -->
-      <article class="about active" data-page="about">
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-        <section class="about-text">
-          <!-- Description Paragraphs -->
-          <p id="description1" class="about-text">Loading...</p>
-          <p id="description2" class="about-text">Loading...</p>
-          <p id="description3" class="about-text">Loading...</p>
-        </section>
-
-        <!-- Services Section -->
-        <section class="service">
-          <h3 class="h3 service-title">What I'm doing</h3>
-          <ul id="what-i-do" class="service-list"></ul>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials">
-          <h3 class="h3 testimonials-title">Testimonials</h3>
-          <ul id="testimonials" class="testimonials-list has-scrollbar"></ul>
-        </section>
-
-        <!-- Testimonials Modal -->
-        <div class="modal-container" data-modal-container>
-          <div class="overlay" data-overlay></div>
-          <section class="testimonials-modal">
-            <!-- Close Button -->
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-            <!-- Link to Testimonial -->
-            <a href="" class="modal-link-btn" data-modal-link-btn>
-              <ion-icon name="open-outline"></ion-icon>
-            </a>
-            <!-- Modal Image Wrapper -->
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="#" alt="Testimonial Avatar" data-modal-img />
-              </figure>
-              <img src="./assets/images/icon-quote.svg" alt="quote icon" />
-            </div>
-            <!-- Modal Content -->
-            <div class="modal-content">
-              <h4 class="h3 modal-title" data-modal-title>
-                Testimonial Title
-              </h4>
-              <time data-modal-date datetime="2021-06-14">14 June, 2021</time>
-              <div data-modal-text>
-                <p>Testimonial text will go here</p>
+        <!-- Sidebar Contacts Info -->
+        <div class="sidebar-info_more">
+          <div class="separator"></div>
+          <ul class="contacts-list">
+            <!-- Email Contact -->
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="mail-outline"></ion-icon>
               </div>
-            </div>
-          </section>
-        </div>
+              <div class="contact-info">
+                <p class="contact-title">Email</p>
+                <a id="email" href="#" class="contact-link">Loading...</a>
+              </div>
+            </li>
 
-        <!-- Clients Section -->
-        <section class="clients">
-          <h3 class="h3 clients-title">Clients</h3>
-          <ul id="clients" class="clients-list has-scrollbar"></ul>
-        </section>
-      </article>
+            <!-- Phone Contact -->
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Phone</p>
+                <a id="phone" href="#" class="contact-link">Loading...</a>
+              </div>
+            </li>
 
-      <!-- Resume Section -->
-      <article class="resume" data-page="resume">
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-        <!-- Education Timeline -->
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Education</h3>
-          </div>
-          <ol id="education" class="timeline-list"></ol>
-        </section>
+            <!-- Birthday Contact -->
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Birthday</p>
+                <time id="birthday" datetime="">Loading...</time>
+              </div>
+            </li>
 
-        <!-- Certificate Timeline -->
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Certificates</h3>
-          </div>
-          <ol id="certificate" class="timeline-list"></ol>
-        </section>
-
-        <!-- Experience Timeline -->
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Experience</h3>
-          </div>
-          <ol id="experience" class="timeline-list"></ol>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="skill">
-          <h3 class="h3 skills-title">My Skills</h3>
-          <ul id="skills" class="skills-list content-card"></ul>
-        </section>
-      </article>
-
-      <!-- Portfolio Section -->
-      <article class="portfolio" data-page="portfolio">
-        <header>
-          <h2 class="h2 article-title">Portfolio</h2>
-        </header>
-        <!-- Portfolio Filter -->
-        <section class="projects">
-          <ul class="filter-list">
-            <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
-            <li class="filter-item"><button data-filter-btn>Applications</button></li>
-            <li class="filter-item"><button data-filter-btn>Web development</button></li>
-            <li class="filter-item"><button data-filter-btn>Network</button></li>
-            <li class="filter-item"><button data-filter-btn>System</button></li>
+            <!-- Location Contact -->
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="location-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Location</p>
+                <address id="location">Loading...</address>
+              </div>
+            </li>
           </ul>
 
-          <!-- Portfolio Filter Select -->
-          <div class="filter-select-box">
-            <button class="filter-select" data-select>
-              <div class="select-value" data-selecct-value>Select category</div>
-              <div class="select-icon"><ion-icon name="chevron-down"></ion-icon></div>
-            </button>
-            <ul class="select-list">
-              <li class="select-item"><button data-select-item>All</button></li>
-              <li class="select-item"><button data-select-item>Applications</button></li>
-              <li class="select-item"><button data-select-item>Web development</button></li>
-              <li class="select-item"><button data-select-item>Network</button></li>
-              <li class="select-item"><button data-select-item>System</button></li>
-            </ul>
+          <!-- Social Links -->
+          <div class="separator"></div>
+          <ul id="social-links" class="social-list"></ul>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <!-- Navigation Links -->
+            <li class="navbar-item">
+              <button class="navbar-link active" data-nav-link>About</button>
+            </li>
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Resume</button>
+            </li>
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Portfolio</button>
+            </li>
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Blog</button>
+            </li>
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Contact</button>
+            </li>
+            <li class="navbar-item">
+              <a id="cv-download-link" class="navbar-link" download>
+                CV
+                <img src="./assets/images/icon-download.svg" alt="Download" class="download-icon">
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- About Section -->
+        <article class="about active" data-page="about">
+          <header>
+            <h2 class="h2 article-title">About me</h2>
+          </header>
+          <section class="about-text">
+            <!-- Description Paragraphs -->
+            <p id="description1" class="about-text">Loading...</p>
+            <p id="description2" class="about-text">Loading...</p>
+            <p id="description3" class="about-text">Loading...</p>
+          </section>
+
+          <!-- Services Section -->
+          <section class="service">
+            <h3 class="h3 service-title">What I'm doing</h3>
+            <ul id="what-i-do" class="service-list"></ul>
+          </section>
+
+          <!-- Testimonials Section -->
+          <section class="testimonials">
+            <h3 class="h3 testimonials-title">Testimonials</h3>
+            <ul id="testimonials" class="testimonials-list has-scrollbar"></ul>
+          </section>
+
+          <!-- Testimonials Modal -->
+          <div class="modal-container" data-modal-container>
+            <div class="overlay" data-overlay></div>
+            <section class="testimonials-modal">
+              <!-- Close Button -->
+              <button class="modal-close-btn" data-modal-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+              <!-- Link to Testimonial -->
+              <a href="" class="modal-link-btn" data-modal-link-btn>
+                <ion-icon name="open-outline"></ion-icon>
+              </a>
+              <!-- Modal Image Wrapper -->
+              <div class="modal-img-wrapper">
+                <figure class="modal-avatar-box">
+                  <img src="#" alt="Testimonial Avatar" data-modal-img />
+                </figure>
+                <img src="./assets/images/icon-quote.svg" alt="quote icon" />
+              </div>
+              <!-- Modal Content -->
+              <div class="modal-content">
+                <h4 class="h3 modal-title" data-modal-title>
+                  Testimonial Title
+                </h4>
+                <time data-modal-date datetime="2021-06-14">14 June, 2021</time>
+                <div data-modal-text>
+                  <p>Testimonial text will go here</p>
+                </div>
+              </div>
+            </section>
           </div>
 
-          <!-- Portfolio Projects -->
-          <ul id="portfolio" class="project-list"></ul>
-        </section>
-      </article>
+          <!-- Clients Section -->
+          <section class="clients">
+            <h3 class="h3 clients-title">Clients</h3>
+            <ul id="clients" class="clients-list has-scrollbar"></ul>
+          </section>
+        </article>
 
-      <!-- Blog Section -->
-      <article class="blog" data-page="blog">
-        <header>
-          <h2 class="h2 article-title">Blog</h2>
-        </header>
-        <section class="blog-posts">
-          <ul id="blog" class="blog-posts-list"></ul>
-        </section>
-      </article>
-
-      <!-- Contact Section -->
-      <article class="contact" data-page="contact">
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-        <!-- Map Section -->
-        <section class="mapbox" data-mapbox>
-          <iframe id="map-embed" style="border:0" loading="lazy" allowfullscreen></iframe>
-        </section>
-
-        <!-- Contact Form -->
-        <section id="contact" class="contact-form">
-          <h3 class="h3 form-title">Contact Form</h3>
-          <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="form"
-            data-form>
-            <input type="hidden" name="form-name" value="contact" />
-            <p style="display: none;">
-              <label>
-                Don’t fill this out if you’re human:
-                <input name="bot-field" />
-              </label>
-            </p>
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input />
-              <input type="email" name="email" class="form-input" placeholder="Email address" required
-                data-form-input />
+        <!-- Resume Section -->
+        <article class="resume" data-page="resume">
+          <header>
+            <h2 class="h2 article-title">Resume</h2>
+          </header>
+          <!-- Education Timeline -->
+          <section class="timeline">
+            <div class="title-wrapper">
+              <div class="icon-box">
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+              <h3 class="h3">Education</h3>
             </div>
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-            <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
-        </section>
-      </article>
-    </div>
-  </main>
+            <ol id="education" class="timeline-list"></ol>
+          </section>
 
-  <!-- Custom JavaScript -->
-  <script src="./assets/js/script.js"></script>
+          <!-- Certificate Timeline -->
+          <section class="timeline">
+            <div class="title-wrapper">
+              <div class="icon-box">
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+              <h3 class="h3">Certificates</h3>
+            </div>
+            <ol id="certificate" class="timeline-list"></ol>
+          </section>
 
-  <!-- Ionicon Script -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+          <!-- Experience Timeline -->
+          <section class="timeline">
+            <div class="title-wrapper">
+              <div class="icon-box">
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+              <h3 class="h3">Experience</h3>
+            </div>
+            <ol id="experience" class="timeline-list"></ol>
+          </section>
+
+          <!-- Skills Section -->
+          <section class="skill">
+            <h3 class="h3 skills-title">My Skills</h3>
+            <ul id="skills" class="skills-list content-card"></ul>
+          </section>
+        </article>
+
+        <!-- Portfolio Section -->
+        <article class="portfolio" data-page="portfolio">
+          <header>
+            <h2 class="h2 article-title">Portfolio</h2>
+          </header>
+          <!-- Portfolio Filter -->
+          <section class="projects">
+            <ul class="filter-list">
+              <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
+              <li class="filter-item"><button data-filter-btn>Applications</button></li>
+              <li class="filter-item"><button data-filter-btn>Web development</button></li>
+              <li class="filter-item"><button data-filter-btn>Network</button></li>
+              <li class="filter-item"><button data-filter-btn>System</button></li>
+            </ul>
+
+            <!-- Portfolio Filter Select -->
+            <div class="filter-select-box">
+              <button class="filter-select" data-select>
+                <div class="select-value" data-selecct-value>Select category</div>
+                <div class="select-icon"><ion-icon name="chevron-down"></ion-icon></div>
+              </button>
+              <ul class="select-list">
+                <li class="select-item"><button data-select-item>All</button></li>
+                <li class="select-item"><button data-select-item>Applications</button></li>
+                <li class="select-item"><button data-select-item>Web development</button></li>
+                <li class="select-item"><button data-select-item>Network</button></li>
+                <li class="select-item"><button data-select-item>System</button></li>
+              </ul>
+            </div>
+
+            <!-- Portfolio Projects -->
+            <ul id="portfolio" class="project-list"></ul>
+          </section>
+        </article>
+
+        <!-- Blog Section -->
+        <article class="blog" data-page="blog">
+          <header>
+            <h2 class="h2 article-title">Blog</h2>
+          </header>
+          <section class="blog-posts">
+            <ul id="blog" class="blog-posts-list"></ul>
+          </section>
+        </article>
+
+        <!-- Contact Section -->
+        <article class="contact" data-page="contact">
+          <header>
+            <h2 class="h2 article-title">Contact</h2>
+          </header>
+          <!-- Map Section -->
+          <section class="mapbox" data-mapbox>
+            <iframe id="map-embed" style="border:0" loading="lazy" allowfullscreen></iframe>
+          </section>
+
+          <!-- Contact Form -->
+          <section id="contact" class="contact-form">
+            <h3 class="h3 form-title">Contact Form</h3>
+            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="form"
+              data-form>
+              <input type="hidden" name="form-name" value="contact" />
+              <p style="display: none;">
+                <label>
+                  Don’t fill this out if you’re human:
+                  <input name="bot-field" />
+                </label>
+              </p>
+              <div class="input-wrapper">
+                <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                  data-form-input />
+                <input type="email" name="email" class="form-input" placeholder="Email address" required
+                  data-form-input />
+              </div>
+              <textarea name="message" class="form-input" placeholder="Your Message" required
+                data-form-input></textarea>
+              <button class="form-btn" type="submit" data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <!-- Custom JavaScript -->
+    <script src="./assets/js/script.js"></script>
+
+    <!-- Ionicon Script -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </div>
 </body>
 
 </html>

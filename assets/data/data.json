@@ -1,6 +1,6 @@
 {
-  "siteInfo": {
-       "title": "Ali Öztürk",
+    "siteInfo": {
+        "title": "Ali Öztürk",
         "logo": "./assets/images/logo.svg"
     },
     "socialLinks": [
@@ -190,16 +190,10 @@
     ],
     "portfolio": [
         {
-            "title": "PhotoGallery App",
-            "category": "Applications",
-            "image": "./assets/images/projects/project-1.jpg",
-            "link": "https://weather-dashboard.netlify.app"
-        },
-        {
             "title": "Weather Dashboard",
             "category": "Web development",
             "image": "./assets/images/projects/project-2.png",
-            "link": ""
+            "link": "https://weather-dashboard.netlify.app"
         },
         {
             "title": "E-Commerce Website",

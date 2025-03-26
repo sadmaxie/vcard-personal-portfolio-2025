@@ -18,38 +18,26 @@
 
   /* gradient */
 
-  --bg-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(240, 1%, 25%) 3%,
-    hsl(0, 0%, 19%) 97%
-  );
-  --bg-gradient-jet: linear-gradient(
-      to bottom right,
+  --bg-gradient-onyx: linear-gradient(to bottom right,
+      hsl(240, 1%, 25%) 3%,
+      hsl(0, 0%, 19%) 97%);
+  --bg-gradient-jet: linear-gradient(to bottom right,
       hsla(240, 1%, 18%, 0.251) 0%,
-      hsla(240, 2%, 11%, 0) 100%
-    ),
+      hsla(240, 2%, 11%, 0) 100%),
     hsl(240, 2%, 13%);
-  --bg-gradient-yellow-1: linear-gradient(
-    to bottom right,
-    hsl(45, 100%, 71%) 0%,
-    hsla(36, 100%, 69%, 0) 50%
-  );
-  --bg-gradient-yellow-2: linear-gradient(
-      135deg,
+  --bg-gradient-yellow-1: linear-gradient(to bottom right,
+      hsl(45, 100%, 71%) 0%,
+      hsla(36, 100%, 69%, 0) 50%);
+  --bg-gradient-yellow-2: linear-gradient(135deg,
       hsla(45, 100%, 71%, 0.251) 0%,
-      hsla(35, 100%, 68%, 0) 59.86%
-    ),
+      hsla(35, 100%, 68%, 0) 59.86%),
     hsl(240, 2%, 13%);
-  --border-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(0, 0%, 25%) 0%,
-    hsla(0, 0%, 25%, 0) 50%
-  );
-  --text-gradient-yellow: linear-gradient(
-    to right,
-    hsl(45, 100%, 72%),
-    hsl(35, 100%, 68%)
-  );
+  --border-gradient-onyx: linear-gradient(to bottom right,
+      hsl(0, 0%, 25%) 0%,
+      hsla(0, 0%, 25%, 0) 50%);
+  --text-gradient-yellow: linear-gradient(to right,
+      hsl(45, 100%, 72%),
+      hsl(35, 100%, 68%));
 
   /* solid */
 
@@ -231,6 +219,7 @@ article.active {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -278,8 +267,10 @@ article.active {
 }
 
 .has-scrollbar::-webkit-scrollbar {
-  width: 5px; /* for vertical scrollbar */
-  height: 5px; /* for horizontal scrollbar */
+  width: 5px;
+  /* for vertical scrollbar */
+  height: 5px;
+  /* for horizontal scrollbar */
 }
 
 .has-scrollbar::-webkit-scrollbar-track {
@@ -742,7 +733,8 @@ main {
 .modal-link-btn {
   position: absolute;
   top: 15px;
-  right: 60px; /* Adjust position to sit next to the close button */
+  right: 60px;
+  /* Adjust position to sit next to the close button */
   background: var(--onyx);
   border-radius: 8px;
   width: 32px;
@@ -757,7 +749,8 @@ main {
 }
 
 .modal-link-btn:hover {
-  opacity: 1; /* Increase opacity on hover */
+  opacity: 1;
+  /* Increase opacity on hover */
 }
 
 .modal-close-btn:hover,
@@ -777,7 +770,7 @@ main {
   box-shadow: var(--shadow-2);
 }
 
-.modal-img-wrapper > img {
+.modal-img-wrapper>img {
   display: none;
 }
 
@@ -915,9 +908,12 @@ main {
 
 .timeline-item-role {
   font-weight: var(--fw-400);
-  color: var(--white-1); /* Adjust color as needed */
-  margin-bottom: 5px; /* Add some spacing below the role */
-  display: block; /* Ensures it appears on a new line */
+  color: var(--white-1);
+  /* Adjust color as needed */
+  margin-bottom: 5px;
+  /* Add some spacing below the role */
+  display: block;
+  /* Ensures it appears on a new line */
 }
 
 /**
@@ -1008,7 +1004,7 @@ main {
   transition: 0.15s ease-in-out;
 }
 
-.filter-select.active + .select-list {
+.filter-select.active+.select-list {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
@@ -1049,12 +1045,13 @@ main {
   0% {
     transform: scale(0.5);
   }
+
   100% {
     transform: scale(1);
   }
 }
 
-.project-item > a {
+.project-item>a {
   width: 100%;
 }
 
@@ -1079,7 +1076,7 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover .project-img::before {
+.project-item>a:hover .project-img::before {
   background: hsla(0, 0%, 0%, 0.5);
 }
 
@@ -1100,7 +1097,7 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover .project-item-icon-box {
+.project-item>a:hover .project-item-icon-box {
   --scale: 1;
   opacity: 1;
 }
@@ -1116,7 +1113,7 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover img {
+.project-item>a:hover img {
   transform: scale(1.1);
 }
 
@@ -1153,7 +1150,7 @@ main {
   gap: 20px;
 }
 
-.blog-post-item > a {
+.blog-post-item>a {
   position: relative;
   background: var(--border-gradient-onyx);
   height: 100%;
@@ -1162,7 +1159,7 @@ main {
   z-index: 1;
 }
 
-.blog-post-item > a::before {
+.blog-post-item>a::before {
   content: "";
   position: absolute;
   inset: 1px;
@@ -1185,7 +1182,7 @@ main {
   transition: var(--transition-1);
 }
 
-.blog-post-item > a:hover .blog-banner-box img {
+.blog-post-item>a:hover .blog-banner-box img {
   transform: scale(1.1);
 }
 
@@ -1220,7 +1217,7 @@ main {
   transition: var(--transition-1);
 }
 
-.blog-post-item > a:hover .blog-item-title {
+.blog-post-item>a:hover .blog-item-title {
   color: var(--orange-yellow-crayola);
 }
 
@@ -1620,7 +1617,7 @@ textarea.form-input::-webkit-resizer {
     width: 65px;
   }
 
-  .modal-img-wrapper > img {
+  .modal-img-wrapper>img {
     display: block;
     flex-grow: 1;
     width: 35px;
@@ -2065,14 +2062,148 @@ textarea.form-input::-webkit-resizer {
 
 /* Extending existing styles for the CV button */
 .navbar-link {
-  display: flex; /* Allows for icon alignment */
+  display: flex;
+  /* Allows for icon alignment */
   align-items: center;
-  gap: 5px; /* Space between text and icon */
+  gap: 5px;
+  /* Space between text and icon */
 }
 
 .download-icon {
-  width: 16px; /* Icon size */
+  width: 16px;
+  /* Icon size */
   height: 16px;
-  transition: transform var(--transition-1); /* Matches existing transitions */
+  transition: transform var(--transition-1);
+  /* Matches existing transitions */
 }
 
+/* Modal overlay with blur background */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  /* Background blur effect */
+  -webkit-backdrop-filter: blur(8px);
+  /* Safari support */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  z-index: 1001;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.main-container.blur {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+/* Project item styling with icons */
+.project-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.project-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.project-img:hover::before {
+  opacity: 1;
+}
+
+.project-img img {
+  transition: transform 0.3s ease;
+}
+
+.project-img:hover img {
+  transform: scale(1.05);
+}
+
+/* Icon box styling */
+.project-item-icon-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 11px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-img:hover .project-item-icon-box {
+  opacity: 1;
+}
+
+/* Remove background from icons */
+.project-item-icon-box img {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+
+.project-item-icon-box img:hover {
+  transform: scale(1.1);
+}
+
+/* Disabled icon style */
+.disabled-icon {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal close button styling */
+.modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.modal-close:hover {
+  background: #333;
+  color: #fff;
+}

@@ -266,26 +266,26 @@ fetch("./assets/data/data.json")
       return experienceElement;
     });
 
-// ---------- EXPERIENCE SECTION ----------
+    // ---------- EXPERIENCE SECTION ----------
 
-// Append all created elements to the experience section
-experienceElements.forEach((experienceElement) => {
-  experienceSection.appendChild(experienceElement);
-});
+    // Append all created elements to the experience section
+    experienceElements.forEach((experienceElement) => {
+      experienceSection.appendChild(experienceElement);
+    });
 
-// ---------- SKILLS SECTION ----------
+    // ---------- SKILLS SECTION ----------
 
-// Populate the Skills section
-const skillsSection = document.getElementById("skills");
+    // Populate the Skills section
+    const skillsSection = document.getElementById("skills");
 
-// Map through the skills data and create list items
-const skillElements = data.skills.map((skill) => {
-  // Create the list item
-  const skillElement = document.createElement("li");
-  skillElement.classList.add("skills-item"); // Add the required class for styling
+    // Map through the skills data and create list items
+    const skillElements = data.skills.map((skill) => {
+      // Create the list item
+      const skillElement = document.createElement("li");
+      skillElement.classList.add("skills-item"); // Add the required class for styling
 
-  // Set the inner HTML for the skill item
-  skillElement.innerHTML = `
+      // Set the inner HTML for the skill item
+      skillElement.innerHTML = `
     <div class="title-wrapper">
       <h5 class="h5">${skill.name}</h5>
       <data value="${skill.level}">${skill.level}%</data>
@@ -294,84 +294,123 @@ const skillElements = data.skills.map((skill) => {
       <div class="skill-progress-fill" style="width: ${skill.level}%"></div>
     </div>
   `;
-  return skillElement;
-});
+      return skillElement;
+    });
 
-// Append all created elements to the skills section
-skillElements.forEach((skillElement) => {
-  skillsSection.appendChild(skillElement);
-});
+    // Append all created elements to the skills section
+    skillElements.forEach((skillElement) => {
+      skillsSection.appendChild(skillElement);
+    });
 
-// ---------- PORTFOLIO SECTION ----------
+    // ---------- PORTFOLIO SECTION ----------
 
-// Populate the Portfolio section
-const portfolioSection = document.getElementById("portfolio");
+    const portfolioSection = document.getElementById("portfolio");
 
-// Map through the portfolio data and create list items
-const projectElements = data.portfolio.map((project) => {
-  const projectElement = document.createElement("li");
-  projectElement.classList.add("project-item", "active");
-  projectElement.setAttribute("data-filter-item", "");
-  projectElement.setAttribute("data-category", project.category);
+    const projectElements = data.portfolio.map((project) => {
+      const projectElement = document.createElement("li");
+      projectElement.classList.add("project-item", "active");
+      projectElement.setAttribute("data-filter-item", "");
+      projectElement.setAttribute("data-category", project.category);
 
-  // Check if the project has a link
-  if (project.link) {
-    projectElement.innerHTML = `
-      <a href="${project.link}" target="_blank" rel="noopener noreferrer">
-        <figure class="project-img">
-          <div class="project-item-icon-box">
-            <ion-icon name="eye-outline"></ion-icon>
-          </div>
-          <img
-            src="${project.image}"
-            alt="${project.title}"
-            loading="lazy"
-          />
-        </figure>
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-category">${project.category}</p>
-      </a>
-    `;
-  } else {
-    projectElement.innerHTML = `
-      <div>
-        <figure class="project-img">
-          <div class="project-item-icon-box">
-            <ion-icon name="eye-outline"></ion-icon>
-          </div>
-          <img
-            src="${project.image}"
-            alt="${project.title}"
-            loading="lazy"
-          />
-        </figure>
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-category">${project.category}</p>
-      </div>
-    `;
-  }
+      // Build the content structure
+      let iconBox = `
+    <div class="project-item-icon-box">
+      ${project.link ? `
+        <a href="${project.link}" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/icon-eye.svg" alt="View project" class="icon-eye">
+        </a>
+      ` : ""} <!-- No eye icon if no link -->
+      <img src="./assets/images/icon-images.svg" alt="Open image" class="open-image-modal">
+    </div>
+  `;
 
-  return projectElement;
-});
+      const content = `
+    <figure class="project-img">
+      ${iconBox}
+      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+    </figure>
+    <h3 class="project-title">${project.title}</h3>
+    <p class="project-category">${project.category}</p>
+  `;
 
-// Append all created elements to the portfolio section
-projectElements.forEach((projectElement) => {
-  portfolioSection.appendChild(projectElement);
-});
+      // Handle whether the project has a link or not
+      projectElement.innerHTML = project.link
+        ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer">${content}</a>`
+        : `<div>${content}</div>`;
 
-// ---------- BLOG SECTION ----------
+      return projectElement;
+    });
 
-// Populate the Blog section
-const blogSection = document.getElementById("blog");
+    // Append projects to the section
+    projectElements.forEach((projectElement) => portfolioSection.appendChild(projectElement));
 
-// Map through the blog data and create list items
-const blogElements = data.blog.map((post) => {
-  const blogElement = document.createElement("li");
-  blogElement.classList.add("blog-post-item");
 
-  // Check if the blog post has a link
-  if (post.link) {
-    blogElement.innerHTML = `
+    // Append all projects
+    projectElements.forEach((projectElement) => portfolioSection.appendChild(projectElement));
+
+    // ---------- MODAL SETUP ----------
+
+    // Ensure modal exists
+    const modalOverlay = document.createElement("div");
+    modalOverlay.classList.add("modal-overlay");
+    modalOverlay.innerHTML = `
+  <div class="modal-content">
+    <img src="" alt="Project Image">
+    <button class="modal-close">&times;</button>
+  </div>
+`;
+    document.body.appendChild(modalOverlay);
+
+    // Ensure image icon triggers the modal correctly now
+    document.querySelectorAll(".open-image-modal").forEach((icon) => {
+      icon.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Prevents conflicts with project links
+
+        // Find the image associated with this project
+        const projectImage = icon.closest("figure").querySelector("img:not(.icon-eye):not(.open-image-modal)").src;
+
+        // Load the correct image into the modal
+        const modalImage = modalOverlay.querySelector(".modal-content img");
+        modalImage.src = projectImage;
+        modalImage.alt = "Project Image";
+
+        // Ensure the modal shows up properly
+        modalOverlay.style.display = "flex";
+        document.body.classList.add("modal-open");
+      });
+    });
+
+    // Close modal functionality (click overlay or button)
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay || e.target.classList.contains("modal-close")) {
+        modalOverlay.style.display = "none";
+        document.body.classList.remove("modal-open");
+      }
+    });
+
+    // Enable ESC key to close the modal
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalOverlay.style.display === "flex") {
+        modalOverlay.style.display = "none";
+        document.body.classList.remove("modal-open");
+      }
+    });
+
+
+    // ---------- BLOG SECTION ----------
+
+    // Populate the Blog section
+    const blogSection = document.getElementById("blog");
+
+    // Map through the blog data and create list items
+    const blogElements = data.blog.map((post) => {
+      const blogElement = document.createElement("li");
+      blogElement.classList.add("blog-post-item");
+
+      // Check if the blog post has a link
+      if (post.link) {
+        blogElement.innerHTML = `
       <a href="${post.link}" target="_blank" rel="noopener noreferrer">
         <figure class="blog-banner-box">
           <img
@@ -385,20 +424,20 @@ const blogElements = data.blog.map((post) => {
             <p class="blog-category">${post.category}</p>
             <span class="dot"></span>
             <time datetime="${post.date}">${new Date(
-      post.date
-    ).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    })}</time>
+          post.date
+        ).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })}</time>
           </div>
           <h3 class="h3 blog-item-title">${post.title}</h3>
           <p class="blog-text">${post.description}</p>
         </div>
       </a>
     `;
-  } else {
-    blogElement.innerHTML = `
+      } else {
+        blogElement.innerHTML = `
       <div>
         <figure class="blog-banner-box">
           <img
@@ -412,159 +451,159 @@ const blogElements = data.blog.map((post) => {
             <p class="blog-category">${post.category}</p>
             <span class="dot"></span>
             <time datetime="${post.date}">${new Date(
-      post.date
-    ).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    })}</time>
+          post.date
+        ).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })}</time>
           </div>
           <h3 class="h3 blog-item-title">${post.title}</h3>
           <p class="blog-text">${post.description}</p>
         </div>
       </div>
     `;
-  }
+      }
 
-  return blogElement;
-});
+      return blogElement;
+    });
 
-// Append all created elements to the blog section
-blogElements.forEach((blogElement) => {
-  blogSection.appendChild(blogElement);
-});
+    // Append all created elements to the blog section
+    blogElements.forEach((blogElement) => {
+      blogSection.appendChild(blogElement);
+    });
 
-// ---------- CUSTOM SELECT FUNCTIONALITY ----------
+    // ---------- CUSTOM SELECT FUNCTIONALITY ----------
 
-// Custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
+    // Custom select variables
+    const select = document.querySelector("[data-select]");
+    const selectItems = document.querySelectorAll("[data-select-item]");
+    const selectValue = document.querySelector("[data-selecct-value]");
+    const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-// Toggle select dropdown visibility
-select.addEventListener("click", function () {
-  elementToggleFunc(this);
-});
+    // Toggle select dropdown visibility
+    select.addEventListener("click", function () {
+      elementToggleFunc(this);
+    });
 
-// Add event listener to all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue); // Call filter function on selection
-  });
-}
-
-// ---------- FILTER FUNCTIONALITY ----------
-
-// Filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-// Filter items based on selected category
-const filterFunc = function (selectedValue) {
-  for (let i = 0; i < filterItems.length; i++) {
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category.toLowerCase()) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
+    // Add event listener to all select items
+    for (let i = 0; i < selectItems.length; i++) {
+      selectItems[i].addEventListener("click", function () {
+        let selectedValue = this.innerText.toLowerCase();
+        selectValue.innerText = this.innerText;
+        elementToggleFunc(select);
+        filterFunc(selectedValue); // Call filter function on selection
+      });
     }
-  }
-};
 
-// Add event listener to all filter buttons for large screens
-let lastClickedBtn = filterBtn[0];
-for (let i = 0; i < filterBtn.length; i++) {
-  filterBtn[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue); // Call filter function
+    // ---------- FILTER FUNCTIONALITY ----------
 
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-  });
-}
+    // Filter variables
+    const filterItems = document.querySelectorAll("[data-filter-item]");
 
-// ---------- TESTIMONIALS MODAL FUNCTIONALITY ----------
+    // Filter items based on selected category
+    const filterFunc = function (selectedValue) {
+      for (let i = 0; i < filterItems.length; i++) {
+        if (selectedValue === "all") {
+          filterItems[i].classList.add("active");
+        } else if (selectedValue === filterItems[i].dataset.category.toLowerCase()) {
+          filterItems[i].classList.add("active");
+        } else {
+          filterItems[i].classList.remove("active");
+        }
+      }
+    };
 
-// Testimonials variables
-const testimonialsItem = document.querySelectorAll(
-  "[data-testimonials-item]"
-);
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
+    // Add event listener to all filter buttons for large screens
+    let lastClickedBtn = filterBtn[0];
+    for (let i = 0; i < filterBtn.length; i++) {
+      filterBtn[i].addEventListener("click", function () {
+        let selectedValue = this.innerText.toLowerCase();
+        selectValue.innerText = this.innerText;
+        filterFunc(selectedValue); // Call filter function
 
-// Modal variables
-const modalImg = document.querySelector("[data-modal-img]");
-const modalDate = document.querySelector("[data-modal-date]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// Toggle the modal display
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-};
-
-// Add event listeners to all testimonials items to open the modal
-for (let i = 0; i < testimonialsItem.length; i++) {
-  testimonialsItem[i].addEventListener("click", function () {
-    modalDate.innerHTML =
-      this.querySelector("[data-avatar-date]").dataset.avatarDate;
-    modalDate.dateTime =
-      this.querySelector("[data-avatar-date]").dataset.avatarDate;
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector(
-      "[data-testimonials-title]"
-    ).innerHTML;
-    modalText.innerHTML = this.querySelector(
-      "[data-testimonials-text]"
-    ).innerHTML;
-    testimonialsModalFunc(); // Open the modal
-  });
-}
-
-// Close the modal when the close button or overlay is clicked
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
-
-// ---------- CONTACT FORM FUNCTIONALITY ----------
-
-// Contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// Add event listener to form inputs to check validity
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-    // Check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+        lastClickedBtn.classList.remove("active");
+        this.classList.add("active");
+        lastClickedBtn = this;
+      });
     }
+
+    // ---------- TESTIMONIALS MODAL FUNCTIONALITY ----------
+
+    // Testimonials variables
+    const testimonialsItem = document.querySelectorAll(
+      "[data-testimonials-item]"
+    );
+    const modalContainer = document.querySelector("[data-modal-container]");
+    const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    // Modal variables
+    const modalImg = document.querySelector("[data-modal-img]");
+    const modalDate = document.querySelector("[data-modal-date]");
+    const modalTitle = document.querySelector("[data-modal-title]");
+    const modalText = document.querySelector("[data-modal-text]");
+
+    // Toggle the modal display
+    const testimonialsModalFunc = function () {
+      modalContainer.classList.toggle("active");
+      overlay.classList.toggle("active");
+    };
+
+    // Add event listeners to all testimonials items to open the modal
+    for (let i = 0; i < testimonialsItem.length; i++) {
+      testimonialsItem[i].addEventListener("click", function () {
+        modalDate.innerHTML =
+          this.querySelector("[data-avatar-date]").dataset.avatarDate;
+        modalDate.dateTime =
+          this.querySelector("[data-avatar-date]").dataset.avatarDate;
+        modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
+        modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
+        modalTitle.innerHTML = this.querySelector(
+          "[data-testimonials-title]"
+        ).innerHTML;
+        modalText.innerHTML = this.querySelector(
+          "[data-testimonials-text]"
+        ).innerHTML;
+        testimonialsModalFunc(); // Open the modal
+      });
+    }
+
+    // Close the modal when the close button or overlay is clicked
+    modalCloseBtn.addEventListener("click", testimonialsModalFunc);
+    overlay.addEventListener("click", testimonialsModalFunc);
+
+    // ---------- CONTACT FORM FUNCTIONALITY ----------
+
+    // Contact form variables
+    const form = document.querySelector("[data-form]");
+    const formInputs = document.querySelectorAll("[data-form-input]");
+    const formBtn = document.querySelector("[data-form-btn]");
+
+    // Add event listener to form inputs to check validity
+    for (let i = 0; i < formInputs.length; i++) {
+      formInputs[i].addEventListener("input", function () {
+        // Check form validation
+        if (form.checkValidity()) {
+          formBtn.removeAttribute("disabled");
+        } else {
+          formBtn.setAttribute("disabled", "");
+        }
+      });
+    }
+
+    // ---------- POPULATE CONTACT SECTION ----------
+
+    // Populate map and form placeholders
+    const map = document.getElementById("map");
+    map.src = data.contact.mapEmbed;
+
+    const contactName = document.getElementById("contact-name");
+    contactName.placeholder = data.contact.form.placeholderName;
+
+    const contactEmail = document.getElementById("contact-email");
+    contactEmail.placeholder = data.contact.form.placeholderEmail;
+
+    const contactMessage = document.getElementById("contact-message");
+    contactMessage.placeholder = data.contact.form.placeholderMessage;
   });
-}
-
-// ---------- POPULATE CONTACT SECTION ----------
-
-// Populate map and form placeholders
-const map = document.getElementById("map");
-map.src = data.contact.mapEmbed;
-
-const contactName = document.getElementById("contact-name");
-contactName.placeholder = data.contact.form.placeholderName;
-
-const contactEmail = document.getElementById("contact-email");
-contactEmail.placeholder = data.contact.form.placeholderEmail;
-
-const contactMessage = document.getElementById("contact-message");
-contactMessage.placeholder = data.contact.form.placeholderMessage;
-});
