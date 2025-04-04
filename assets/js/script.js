@@ -266,8 +266,6 @@ fetch("./assets/data/data.json")
       return experienceElement;
     });
 
-    // ---------- EXPERIENCE SECTION ----------
-
     // Append all created elements to the experience section
     experienceElements.forEach((experienceElement) => {
       experienceSection.appendChild(experienceElement);
@@ -302,8 +300,7 @@ fetch("./assets/data/data.json")
       skillsSection.appendChild(skillElement);
     });
 
-
-    // ---------- PORTFOLIO SECTION WITH NO-INTERACTION SUPPORT ----------
+    // ---------- PORTFOLIO SECTION WITH VIDEO SUPPORT ----------
 
     // Portfolio section container
     const portfolioSection = document.getElementById("portfolio");
@@ -315,8 +312,9 @@ fetch("./assets/data/data.json")
       projectElement.setAttribute("data-filter-item", "");
       projectElement.setAttribute("data-category", project.category);
 
-      // Determine if project has images or a link
+      // Determine if project has images, videos, or a link
       const hasImages = project.images && Array.isArray(project.images) && project.images.length > 0;
+      const hasVideos = project.videos && Array.isArray(project.videos) && project.videos.length > 0;
       const hasLink = !!project.link;
 
       // ---------- ICON BOX SETUP ----------
@@ -332,7 +330,12 @@ fetch("./assets/data/data.json")
 
       // Add gallery icon if project has images
       if (hasImages) {
-        iconBoxContent += `<img src="./assets/images/icon-images.svg" alt="Open gallery" class="open-gallery-icon">`;
+        iconBoxContent += `<img src="./assets/images/icon-images.svg" alt="Open image gallery" class="open-gallery-icon">`;
+      }
+
+      // Add video icon if project has videos
+      if (hasVideos) {
+        iconBoxContent += `<img src="./assets/images/icon-videos.svg" alt="Open video gallery" class="open-video-icon">`;
       }
 
       const iconBoxHtml = iconBoxContent
@@ -352,11 +355,12 @@ fetch("./assets/data/data.json")
       // Wrap project content in a div for better structure
       projectElement.innerHTML = `<div>${content}</div>`;
 
-      // Store image data in dataset for gallery functionality
+      // Store image and video data in dataset for gallery functionality
       projectElement.dataset.images = JSON.stringify(hasImages ? project.images : []);
+      projectElement.dataset.videos = JSON.stringify(hasVideos ? project.videos : []);
 
-      // Add 'no-interaction' class if project has no link or images
-      if (!hasLink && !hasImages) {
+      // Add 'no-interaction' class if project has no link, images, or videos
+      if (!hasLink && !hasImages && !hasVideos) {
         projectElement.classList.add("no-interaction");
       }
 
@@ -364,25 +368,55 @@ fetch("./assets/data/data.json")
       portfolioSection.appendChild(projectElement);
     });
 
-    // ---------- IMAGE GALLERY MODAL SETUP ----------
+    // ---------- CREATE MODALS ----------
 
-    // Create gallery modal overlay (only if it doesn't exist)
-    let galleryModalOverlay = document.querySelector(".modal-overlay");
-    if (!galleryModalOverlay) {
-      galleryModalOverlay = document.createElement("div");
-      galleryModalOverlay.classList.add("modal-overlay");
-      galleryModalOverlay.innerHTML = `
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <button class="modal-prev">&#10094;</button>
-      <img src="" alt="Project Image" class="main-gallery-image">
-      <button class="modal-next">&#10095;</button>
-      <div class="thumbnail-track"></div>
-    </div>
-  `;
-      document.body.appendChild(galleryModalOverlay);
-    }
+    // Create image gallery modal
+    const galleryModalOverlay = document.createElement("div");
+    galleryModalOverlay.id = "galleryModalOverlay";
+    galleryModalOverlay.classList.add("modal-overlay");
+    galleryModalOverlay.innerHTML = `
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <button class="modal-prev">&#10094;</button>
+        <img src="" alt="Project Image" class="main-gallery-image">
+        <button class="modal-next">&#10095;</button>
+        <div class="thumbnail-track"></div>
+      </div>
+    `;
+    document.body.appendChild(galleryModalOverlay);
 
+    // Create video modal
+    const videoModal = document.createElement("div");
+    videoModal.id = "videoModal";
+    videoModal.classList.add("modal-overlay");
+    videoModal.innerHTML = `
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <video controls class="main-video">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    `;
+    document.body.appendChild(videoModal);
+
+    // Add blur effect to background
+    const style = document.createElement("style");
+    style.innerHTML = `
+      .modal-overlay.active {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      body.modal-open {
+        overflow: hidden;
+      }
+      #videoModal video {
+        max-width: 90%;
+        max-height: 90%;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // ---------- IMAGE GALLERY FUNCTIONALITY ----------
     let currentImageIndex = 0;
     let currentImages = [];
 
@@ -395,51 +429,38 @@ fetch("./assets/data/data.json")
         currentImages = JSON.parse(projectElement.dataset.images);
         currentImageIndex = 0;
 
-        const modalImage = galleryModalOverlay.querySelector(".main-gallery-image");
-        modalImage.src = currentImages[currentImageIndex];
+        if (currentImages.length > 0) {
+          const modalImage = galleryModalOverlay.querySelector(".main-gallery-image");
+          modalImage.src = currentImages[currentImageIndex];
 
-        galleryModalOverlay.classList.add("active");
+          const thumbnailTrack = galleryModalOverlay.querySelector(".thumbnail-track");
+          thumbnailTrack.innerHTML = currentImages
+            .map((img, index) => `<img src="${img}" data-index="${index}" class="thumbnail ${index === currentImageIndex ? "active" : ""}">`)
+            .join("");
 
-        const thumbnailTrack = galleryModalOverlay.querySelector(".thumbnail-track");
-        thumbnailTrack.innerHTML = currentImages
-          .map(
-            (img, index) =>
-              `<img src="${img}" data-index="${index}" class="thumbnail ${index === currentImageIndex ? "active" : ""
-              }">`
-          )
-          .join("");
-
-        thumbnailTrack.querySelectorAll(".thumbnail").forEach((thumb) => {
-          thumb.addEventListener("click", (e) => {
-            currentImageIndex = Number(e.target.dataset.index);
-            modalImage.src = currentImages[currentImageIndex];
-            updateActiveThumbnail(currentImageIndex);
+          thumbnailTrack.querySelectorAll(".thumbnail").forEach((thumb) => {
+            thumb.addEventListener("click", (e) => {
+              currentImageIndex = Number(e.target.dataset.index);
+              modalImage.src = currentImages[currentImageIndex];
+              updateActiveThumbnail(currentImageIndex);
+            });
           });
-        });
 
-        document.body.classList.add("modal-open");
+          galleryModalOverlay.classList.add("active");
+          document.body.classList.add("modal-open");
+        }
       }
 
-      if (
-        e.target === galleryModalOverlay ||
-        e.target.classList.contains("modal-close")
-      ) {
-        galleryModalOverlay.classList.remove("active");
-        document.body.classList.remove("modal-open");
-      }
-
+      // Image gallery navigation
       if (e.target.classList.contains("modal-next")) {
         currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-        galleryModalOverlay.querySelector(".main-gallery-image").src =
-          currentImages[currentImageIndex];
+        galleryModalOverlay.querySelector(".main-gallery-image").src = currentImages[currentImageIndex];
         updateActiveThumbnail(currentImageIndex);
       }
 
       if (e.target.classList.contains("modal-prev")) {
-        currentImageIndex =
-          (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-        galleryModalOverlay.querySelector(".main-gallery-image").src =
-          currentImages[currentImageIndex];
+        currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        galleryModalOverlay.querySelector(".main-gallery-image").src = currentImages[currentImageIndex];
         updateActiveThumbnail(currentImageIndex);
       }
     });
@@ -449,67 +470,108 @@ fetch("./assets/data/data.json")
       thumbnails.forEach((thumb) => thumb.classList.remove("active"));
       thumbnails[index].classList.add("active");
     }
-
-    // Add blur effect to background
-    const style = document.createElement("style");
-    style.innerHTML = `
-  .modal-overlay.active {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  body.modal-open {
-    overflow: hidden;
-  }
-`;
-
-    document.head.appendChild(style);
-
-    // ---------- MODAL SETUP ----------
-
-    // Ensure modal exists
-    const modalOverlay = document.createElement("div");
-    modalOverlay.classList.add("modal-overlay");
-    modalOverlay.innerHTML = `
-  <div class="modal-content">
-    <img src="" alt="Project Image">
-    <button class="modal-close">&times;</button>
-  </div>
-`;
-    document.body.appendChild(modalOverlay);
-
-    // Ensure image icon triggers the modal correctly now
-    document.querySelectorAll(".open-image-modal").forEach((icon) => {
-      icon.addEventListener("click", (e) => {
+    // ---------- VIDEO GALLERY FUNCTIONALITY ----------
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("open-video-icon")) {
         e.preventDefault();
-        e.stopPropagation(); // Prevents conflicts with project links
+        e.stopPropagation();
 
-        // Find the image associated with this project
-        const projectImage = icon.closest("figure").querySelector("img:not(.icon-eye):not(.open-image-modal)").src;
+        const projectElement = e.target.closest("li");
+        const currentVideos = JSON.parse(projectElement.dataset.videos || "[]");
 
-        // Load the correct image into the modal
-        const modalImage = modalOverlay.querySelector(".modal-content img");
-        modalImage.src = projectImage;
-        modalImage.alt = "Project Image";
+        if (currentVideos.length > 0) {
+          const videoModal = document.getElementById("videoModal");
+          const videoElement = videoModal.querySelector(".main-video video");
+          const videoContainer = videoModal.querySelector(".main-video");
 
-        // Ensure the modal shows up properly
-        modalOverlay.style.display = "flex";
-        document.body.classList.add("modal-open");
-      });
+          // Ensure stable size (applied to the container now)
+          videoContainer.style.width = "800px";
+          videoContainer.style.height = "450px";
+
+          // Load first video
+          videoElement.src = currentVideos[0];
+          videoElement.play();
+
+          // Generate video thumbnails in a scrollable container
+          const thumbnailTrack = videoModal.querySelector(".thumbnail-track");
+          thumbnailTrack.innerHTML = currentVideos
+            .map((video, index) => `
+          <div class="thumbnail-container">
+            <video class="video-thumbnail" data-index="${index}" src="${video}" muted></video>
+          </div>
+        `)
+            .join("");
+
+          // Add click event to thumbnails
+          thumbnailTrack.querySelectorAll(".video-thumbnail").forEach((thumb) => {
+            thumb.addEventListener("click", (e) => {
+              const index = Number(e.target.dataset.index);
+              videoElement.src = currentVideos[index];
+              videoElement.play();
+              updateActiveVideoThumbnail(index);
+            });
+          });
+
+          // Show modal
+          videoModal.classList.add("active");
+          document.body.classList.add("modal-open");
+        }
+      }
     });
 
-    // Close modal functionality (click overlay or button)
-    modalOverlay.addEventListener("click", (e) => {
-      if (e.target === modalOverlay || e.target.classList.contains("modal-close")) {
-        modalOverlay.style.display = "none";
+    // Update active video thumbnail
+    function updateActiveVideoThumbnail(index) {
+      const thumbnails = document.querySelectorAll(".video-thumbnail");
+      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
+      thumbnails[index].classList.add("active");
+    }
+
+    // ---------- CLOSE VIDEO MODAL ----------
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal-close") || e.target.classList.contains("modal-overlay")) {
+        const videoModal = document.getElementById("videoModal");
+        const videoElement = videoModal.querySelector(".main-video video");
+
+        // Stop the video when closing the modal
+        videoElement.pause();
+        videoElement.src = "";
+
+        videoModal.classList.remove("active");
         document.body.classList.remove("modal-open");
       }
     });
 
-    // Enable ESC key to close the modal
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modalOverlay.style.display === "flex") {
-        modalOverlay.style.display = "none";
+
+    // ---------- MODAL CLOSE FUNCTIONALITY/PHOTOS ----------
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal-close") || e.target.classList.contains("modal-overlay")) {
+        // Close all modals
+        galleryModalOverlay.classList.remove("active");
+        videoModal.classList.remove("active");
         document.body.classList.remove("modal-open");
+
+        // Pause any playing video
+        const videoElement = videoModal.querySelector("video");
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.currentTime = 0;
+        }
+      }
+    });
+
+    // Close modals with ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        galleryModalOverlay.classList.remove("active");
+        videoModal.classList.remove("active");
+        document.body.classList.remove("modal-open");
+
+        // Pause any playing video
+        const videoElement = videoModal.querySelector("video");
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.currentTime = 0;
+        }
       }
     });
 

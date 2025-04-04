@@ -192,51 +192,62 @@
         {
             "title": "Weather Dashboard",
             "category": "Web development",
-            "projectPhoto": "./assets/images/projects/project-1.jpg",
+            "projectPhoto": "./assets/images/projects/project-1/project-1.jpg",
             "images": [
-                "./assets/images/projects/project-7.png",
-                "./assets/images/projects/project-8.jpg",
-                "./assets/images/projects/project-9.png"
+                "./assets/images/projects/project-1/project-1-1.png",
+                "./assets/images/projects/project-1/project-1-2.png"
+            ],
+            "videos": [
+                "./assets/images/projects/project-1/project-1-v1.mp4",
+                "./assets/images/projects/project-1/project-1-v2.mp4"
             ],
             "link": "https://weather-dashboard.netlify.app"
         },
         {
             "title": "Weather Dashboard",
             "category": "Web development",
-            "projectPhoto": "./assets/images/projects/project-2.png",
+            "projectPhoto": "./assets/images/projects/project-2/project-2.png",
             "image": "",
+            "videos": [],
             "link": "https://weather-dashboard.netlify.app"
         },
         {
             "title": "E-Commerce Website",
             "category": "Web development",
-            "projectPhoto": "./assets/images/projects/project-3.jpg",
+            "projectPhoto": "./assets/images/projects/project-3/project-3.jpg",
             "images": [
-                "./assets/images/projects/project-2.png",
-                "./assets/images/projects/project-5.png",
-                "./assets/images/projects/project-4.png"
+                "./assets/images/projects/project-3/project-3-1.png",
+                "./assets/images/projects/project-3/project-3-2.jpg",
+                "./assets/images/projects/project-3/project-3-3.png"
             ],
+            "videos": [],
             "link": ""
         },
         {
             "title": "Task Manager App",
             "category": "Applications",
-            "projectPhoto": "./assets/images/projects/project-4.png",
+            "projectPhoto": "./assets/images/projects/project-4/project-4.png",
             "image": "",
+            "videos": [
+                "./assets/images/projects/project-4/project-4-v1.mp4",
+                "./assets/images/projects/project-4/project-4-v2.mp4"
+            ],
             "link": ""
         },
         {
             "title": "Smart Home System",
             "category": "System",
-            "projectPhoto": "./assets/images/projects/project-5.png",
+            "projectPhoto": "./assets/images/projects/project-5/project-5.png",
             "image": "",
+            "videos": [],
             "link": ""
         },
         {
             "title": "Cloud Infrastructure Setup",
             "category": "Network",
-            "projectPhoto": "./assets/images/projects/project-6.png",
+            "projectPhoto": "./assets/images/projects/project-6/project-6.png",
             "image": "",
+            "videos": [],
             "link": ""
         }
     ],
