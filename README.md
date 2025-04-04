@@ -38,6 +38,9 @@ git clone https://github.com/sadmaxie/vcard-personal-portfolio-2025.git
 -   **Clickable Blog Links**: The blog section now supports clickable links. You can add a link to any blog post or resource, and users can click on it to open the blog or resource in a new tab.
 -   **Project Photo Gallery**: Each project in the portfolio can now include a photo gallery, displaying multiple images related to the project.
 -   **Enhanced Customization**: The portfolio is now more customizable, allowing for easier adjustments to layout, styling, and content to match your personal brand.
+-   **Embedded Video Player**: You can now embed videos directly into your project showcases, providing dynamic demonstrations, tutorials, or behind-the-scenes glimpses of your work.
+
+"Note: I'm still cleaning up some code, and both the video and image galleries will be updated to better match the design."
 
 ## Instructions
 
