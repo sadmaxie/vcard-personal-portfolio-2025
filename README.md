@@ -165,21 +165,27 @@ For example, in `data.json`, each project should have a `category` attribute lik
 
 "portfolio": [
   {
-    "title": "Smart Home System",
-    "category": "System",
-    "projectPhoto": "./assets/images/projects/project-1.png",
-    "images": [
-      "./assets/images/projects/project-1-1.png",
-      "./assets/images/projects/project-1-2.png"
-    ],
-    "link": "https://example.com"
+      "title": "E-Commerce Website",
+      "category": "Web development",
+      "projectPhoto": "./assets/images/projects/project-3/project-3.jpg",
+      "images": [
+          "./assets/images/projects/project-3/project-3-1.png",
+          "./assets/images/projects/project-3/project-3-2.jpg",
+          "./assets/images/projects/project-3/project-3-3.png"
+      ],
+      "videos": [],
+      "link": ""
   },
   {
-    "title": "Networking Project 1",
-    "category": "Network",
-    "projectPhoto": "./assets/images/projects/project-2.png",
-    "images": [],
-    "link": ""
+      "title": "Task Manager App",
+      "category": "Applications",
+      "projectPhoto": "./assets/images/projects/project-4/project-4.png",
+      "image": "",
+      "videos": [
+          "./assets/images/projects/project-4/project-4-v1.mp4",
+          "./assets/images/projects/project-4/project-4-v2.mp4"
+      ],
+      "link": ""
   }
 ]
 
@@ -187,19 +193,23 @@ For example, in `data.json`, each project should have a `category` attribute lik
 
 The filtering logic is automatically handled by the `script.js` file, so you don’t need to do anything else to make it work.
 
-### 3. Adding Links and Images to Your Projects
+### 3. Adding Links, Images, and Videos to Your Projects
 
-You can configure each project to include a link, an image, or both by updating `data.json`. Everything integrates smoothly without editing the JavaScript.
+You can configure each project to include a link, an image, a video, or any combination of these by updating `data.json`. Everything integrates smoothly without editing the JavaScript.
 
 ```json
 "portfolio": [
   {
     "title": "Weather Dashboard",
     "category": "Web Development",
-    "projectPhoto": "./assets/images/projects/project-1.png",
+    "projectPhoto": "./assets/images/projects/project-1/project-1.jpg",
     "images": [
-      "./assets/images/projects/project-1-1.png",
-      "./assets/images/projects/project-1-2.png"
+      "./assets/images/projects/project-1/project-1-1.png",
+      "./assets/images/projects/project-1/project-1-2.png"
+    ],
+    "videos": [
+      "./assets/images/projects/project-1/project-1-v1.mp4",
+      "./assets/images/projects/project-1/project-1-v2.mp4"
     ],
     "link": "https://weather-dashboard.netlify.app"
   },
@@ -208,6 +218,7 @@ You can configure each project to include a link, an image, or both by updating 
     "category": "Design",
     "projectPhoto": "./assets/images/projects/project-2.png",
     "images": [],
+    "videos": [],
     "link": ""
   }
 ]
@@ -219,20 +230,36 @@ You can configure each project to include a link, an image, or both by updating 
 - **`category`**: Determines how the project is filtered.
 - **`projectPhoto`**: The main thumbnail displayed for the project.
 - **`images`**: An array of images shown in the project’s gallery modal.
+- **`videos`**: An array of video links that will appear in the project's video player.
 - **`link`**: Optional. If a link is provided, an 'eye' icon appears, linking to the project.
+
+**Icon Behavior on Hover**
+
+- **Eye Icon**: Appears if the project has a link. Clicking it will redirect to the project.
+- **Image Icon**: Appears if the project has images. Clicking it will open the project's photo gallery.
+- **Video Icon**: Appears if the project has videos. Clicking it will open a playable video player for the project.
 
 **Supported Scenarios**
 
 - **Project with both link and images:**
    - The eye icon links to the project, and the gallery icon opens multiple images.
 
+- **Project with both link and videos:**
+   - The eye icon links to the project, and the video player icon allows playing the videos.
+
+- **Project with link, images, and videos:**
+   - The eye icon links to the project, the gallery icon opens multiple images, and the video player icon allows playing the videos.
+
 - **Project with only a link:**
-   - The eye icon appears without a gallery icon.
+   - The eye icon appears without a gallery or video player icon.
 
 - **Project with only images:**
-   - The gallery icon appears, but no eye icon.
+   - The gallery icon appears, but no eye icon or video player icon.
 
-- **Project with neither link nor images:**
+- **Project with only videos:**
+   - The video player icon appears, but no eye icon or gallery icon.
+
+- **Project with neither link, images, nor videos:**
    - No icons appear — only a static thumbnail is displayed.
 
 
