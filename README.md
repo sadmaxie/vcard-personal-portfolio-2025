@@ -229,8 +229,8 @@ You can configure each project to include a link, an image, a video, or any comb
 - **`title`**: The project's name, displayed below the image.
 - **`category`**: Determines how the project is filtered.
 - **`projectPhoto`**: The main thumbnail displayed for the project.
-- **`images`**: An array of images shown in the project’s gallery modal.
-- **`videos`**: An array of video links that will appear in the project's video player.
+- **`images`**: Optional. An array of images shown in the project’s gallery modal.
+- **`videos`**: Optional. An array of video links that will appear in the project's video player.
 - **`link`**: Optional. If a link is provided, an 'eye' icon appears, linking to the project.
 
 **Icon Behavior on Hover**
@@ -265,7 +265,7 @@ You can configure each project to include a link, an image, a video, or any comb
 
 **Note**:  
 - To hide the project link, leave the `link` field empty in `data.json`, and the project will appear without a clickable link.
-- Same thing goes for images.
+- Same thing goes for images and videos.
 
 ## Contact
 
