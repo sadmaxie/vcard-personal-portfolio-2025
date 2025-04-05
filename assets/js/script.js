@@ -484,9 +484,6 @@ fetch("./assets/data/data.json")
           const videoElement = videoModal.querySelector(".main-video video");
           const videoContainer = videoModal.querySelector(".main-video");
 
-          // Ensure stable size (applied to the container now)
-          videoContainer.style.width = "800px";
-          videoContainer.style.height = "450px";
 
           // Load first video
           videoElement.src = currentVideos[0];
@@ -708,9 +705,7 @@ fetch("./assets/data/data.json")
     // ---------- TESTIMONIALS MODAL FUNCTIONALITY ----------
 
     // Testimonials variables
-    const testimonialsItem = document.querySelectorAll(
-      "[data-testimonials-item]"
-    );
+    const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
     const modalContainer = document.querySelector("[data-modal-container]");
     const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
     const overlay = document.querySelector("[data-overlay]");
