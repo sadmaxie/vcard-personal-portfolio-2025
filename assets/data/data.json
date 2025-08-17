@@ -39,7 +39,8 @@
         "email": "ali.ozturk@example.com",
         "phone": "+90 (555) 123-4567",
         "birthday": "1995-04-15",
-        "location": "Istanbul, Turkey"
+        "location": "Istanbul, Turkey",
+        "nationality": "Turkish"
     },
     "whatIDo": [
         {

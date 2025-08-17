@@ -66,6 +66,7 @@ fetch("./assets/data/data.json")
     const birthdayElement = document.getElementById("birthday");
     const birthdayDate = new Date(data.contacts.birthday);
 
+
     // ---------- SITE INFO ----------
     document.getElementById("site-title").textContent = data.siteInfo.title;
     document.getElementById("favicon").href = data.siteInfo.logo;
@@ -92,6 +93,10 @@ fetch("./assets/data/data.json")
       day: "numeric",
     });
     birthdayElement.textContent = formattedBirthday;
+
+    // ---------- NATIONALITY ----------
+    const nationalityElement = document.getElementById("nationality");
+    nationalityElement.textContent = data.contacts.nationality;
 
     // ---------- LOCATION ----------
     const locationElement = document.getElementById("location");
