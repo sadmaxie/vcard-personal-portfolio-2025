@@ -193,20 +193,19 @@ fetch("./assets/data/data.json")
     // ---------- CLIENTS SECTION ----------
     const clientsSection = document.getElementById("clients");
 
-    // Map through client logos and create list items
     const clientElements = data.clients.map((client) => {
       const clientElement = document.createElement("li");
       clientElement.classList.add("clients-item");
       clientElement.innerHTML = `
-        <a href="${client.url}">
-          <img
-            src="./assets/images/${client.image}"
-            alt="${client.name} logo"
-            width="100"
-            height="100"
-          />
-        </a>
-      `;
+    <a href="${client.url}" target="_blank" rel="noopener noreferrer">
+      <img
+        src="./assets/images/${client.image}"
+        alt="${client.name} logo"
+        width="100"
+        height="100"
+      />
+    </a>
+  `;
       return clientElement;
     });
 
