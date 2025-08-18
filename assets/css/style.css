@@ -1886,7 +1886,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .navbar-list {
-    gap: 30px;
+    gap: 25px;
     padding: 0 20px;
   }
 
@@ -2408,4 +2408,65 @@ body.modal-open {
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+}
+
+/* ------------------ DROPDOWN MODAL STYLES ------------------ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center text inside button */
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--light-gray); /* same color as navbar links */
+  width: 100%; /* make it same width as other items if needed */
+  text-align: center; /* center text */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); /* center menu horizontally */
+  background: var(--eerie-black-1);
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  padding: 10px 0;
+  min-width: 120px;
+  z-index: 1000;
+  box-shadow: var(--shadow-2);
+}
+
+.dropdown.active .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu .navbar-link {
+  display: block;
+  padding: 8px 15px;
+  width: 100%;
+  text-align: center; /* center option text */
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  transition: var(--transition-1);
+  background: none;
+  border: none;
+}
+
+.dropdown-menu .navbar-link:hover {
+  background: var(--onyx);
+  color: var(--orange-yellow-crayola);
 }
