@@ -2482,3 +2482,13 @@ body.modal-open {
   background: var(--onyx);
   color: var(--orange-yellow-crayola);
 }
+
+/* Mobile / small screens */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    top: auto;        /* remove top */
+    bottom: 100%;     /* position above the button */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
