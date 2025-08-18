@@ -137,61 +137,61 @@ function renderContent(data) {
     whatIDoSection.appendChild(serviceElement);
   });
 
-const testimonialsSection = document.getElementById("testimonials");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-const modalImg = document.querySelector("[data-modal-img]");
-const modalDate = document.querySelector("[data-modal-date]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-const modalLinkBtn = document.querySelector("[data-modal-link-btn]");
+  const testimonialsSection = document.getElementById("testimonials");
+  const modalContainer = document.querySelector("[data-modal-container]");
+  const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
+  const overlay = document.querySelector("[data-overlay]");
+  const modalImg = document.querySelector("[data-modal-img]");
+  const modalDate = document.querySelector("[data-modal-date]");
+  const modalTitle = document.querySelector("[data-modal-title]");
+  const modalText = document.querySelector("[data-modal-text]");
+  const modalLinkBtn = document.querySelector("[data-modal-link-btn]");
 
-// Clear previous testimonials
-testimonialsSection.innerHTML = "";
+  // Clear previous testimonials
+  testimonialsSection.innerHTML = "";
 
-// Function to open modal
-const openTestimonialModal = (testimonialElement) => {
-  const avatar = testimonialElement.querySelector("[data-testimonials-avatar]");
-  const date = testimonialElement.querySelector("[data-avatar-date]");
-  const title = testimonialElement.querySelector("[data-testimonials-title]");
-  const text = testimonialElement.querySelector("[data-testimonials-text]");
+  // Function to open modal
+  const openTestimonialModal = (testimonialElement) => {
+    const avatar = testimonialElement.querySelector("[data-testimonials-avatar]");
+    const date = testimonialElement.querySelector("[data-avatar-date]");
+    const title = testimonialElement.querySelector("[data-testimonials-title]");
+    const text = testimonialElement.querySelector("[data-testimonials-text]");
 
-  modalImg.src = avatar.src;
-  modalImg.alt = avatar.alt;
-  modalTitle.innerHTML = title.innerHTML;
-  modalText.innerHTML = text.innerHTML;
-  modalDate.innerHTML = date.dataset.avatarDate;
-  modalDate.dateTime = date.dataset.avatarDate;
+    modalImg.src = avatar.src;
+    modalImg.alt = avatar.alt;
+    modalTitle.innerHTML = title.innerHTML;
+    modalText.innerHTML = text.innerHTML;
+    modalDate.innerHTML = date.dataset.avatarDate;
+    modalDate.dateTime = date.dataset.avatarDate;
 
-  // Show link button only if testimonial has a link
-  if (avatar.dataset.avatarOpen) {
-    modalLinkBtn.style.display = "inline-flex";
-    modalLinkBtn.href = avatar.dataset.avatarOpen;
-    modalLinkBtn.onclick = (e) => {
-      e.preventDefault();
-      window.open(avatar.dataset.avatarOpen, "_blank");
-    };
-  } else {
-    modalLinkBtn.style.display = "none";
-    modalLinkBtn.onclick = null;
-  }
+    // Show link button only if testimonial has a link
+    if (avatar.dataset.avatarOpen) {
+      modalLinkBtn.style.display = "inline-flex";
+      modalLinkBtn.href = avatar.dataset.avatarOpen;
+      modalLinkBtn.onclick = (e) => {
+        e.preventDefault();
+        window.open(avatar.dataset.avatarOpen, "_blank");
+      };
+    } else {
+      modalLinkBtn.style.display = "none";
+      modalLinkBtn.onclick = null;
+    }
 
-  modalContainer.classList.add("active");
-  overlay.classList.add("active");
-};
+    modalContainer.classList.add("active");
+    overlay.classList.add("active");
+  };
 
-// Function to close modal
-const closeTestimonialModal = () => {
-  modalContainer.classList.remove("active");
-  overlay.classList.remove("active");
-};
+  // Function to close modal
+  const closeTestimonialModal = () => {
+    modalContainer.classList.remove("active");
+    overlay.classList.remove("active");
+  };
 
-// Populate testimonials
-data.testimonials.forEach((testimonial) => {
-  const testimonialElement = document.createElement("li");
-  testimonialElement.classList.add("testimonials-item");
-  testimonialElement.innerHTML = `
+  // Populate testimonials
+  data.testimonials.forEach((testimonial) => {
+    const testimonialElement = document.createElement("li");
+    testimonialElement.classList.add("testimonials-item");
+    testimonialElement.innerHTML = `
     <div class="content-card" data-testimonials-item>
       <figure class="testimonials-avatar-box">
         <p>
@@ -214,12 +214,12 @@ data.testimonials.forEach((testimonial) => {
     </div>
   `;
 
-  testimonialElement.addEventListener("click", () => openTestimonialModal(testimonialElement));
-  testimonialsSection.appendChild(testimonialElement);
-});
+    testimonialElement.addEventListener("click", () => openTestimonialModal(testimonialElement));
+    testimonialsSection.appendChild(testimonialElement);
+  });
 
-// Close modal events
-[modalCloseBtn, overlay].forEach((el) => el.addEventListener("click", closeTestimonialModal));
+  // Close modal events
+  [modalCloseBtn, overlay].forEach((el) => el.addEventListener("click", closeTestimonialModal));
 
 
   // ---------- CLIENTS SECTION ----------
@@ -623,6 +623,9 @@ data.testimonials.forEach((testimonial) => {
   // ---------- BLOG SECTION ----------
   const blogSection = document.getElementById("blog");
 
+  // Clear previous blogs before adding new ones
+  blogSection.innerHTML = "";
+
   data.blog.forEach((post) => {
     const blogElement = document.createElement("li");
     blogElement.classList.add("blog-post-item");
@@ -635,7 +638,7 @@ data.testimonials.forEach((testimonial) => {
 
     if (post.link) {
       blogElement.innerHTML = `
-      <a href="${post.link}" target="_blank" rel="noopener noreferrer">
+      <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="blog-box">
         <figure class="blog-banner-box">
           <img src="${post.image}" alt="${post.title}" loading="lazy" />
         </figure>
@@ -652,7 +655,7 @@ data.testimonials.forEach((testimonial) => {
     `;
     } else {
       blogElement.innerHTML = `
-      <div>
+      <div class="blog-box">
         <figure class="blog-banner-box">
           <img src="${post.image}" alt="${post.title}" loading="lazy" />
         </figure>

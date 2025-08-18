@@ -1236,16 +1236,19 @@ main {
   gap: 20px;
 }
 
-.blog-post-item>a {
+.blog-post-item > a,
+.blog-post-item > div {
   position: relative;
   background: var(--border-gradient-onyx);
   height: 100%;
   box-shadow: var(--shadow-4);
   border-radius: 16px;
   z-index: 1;
+  display: block;
 }
 
-.blog-post-item>a::before {
+.blog-post-item > a::before,
+.blog-post-item > div::before {
   content: "";
   position: absolute;
   inset: 1px;
@@ -1268,8 +1271,12 @@ main {
   transition: var(--transition-1);
 }
 
-.blog-post-item>a:hover .blog-banner-box img {
+.blog-post-item > a:hover .blog-banner-box img {
   transform: scale(1.1);
+}
+
+.blog-post-item > div:hover .blog-banner-box img {
+  transform: none;
 }
 
 .blog-content {
@@ -1303,7 +1310,8 @@ main {
   transition: var(--transition-1);
 }
 
-.blog-post-item>a:hover .blog-item-title {
+.blog-post-item > a:hover .blog-item-title,
+.blog-post-item > div:hover .blog-item-title {
   color: var(--orange-yellow-crayola);
 }
 
@@ -1439,6 +1447,10 @@ textarea.form-input::-webkit-resizer {
 
 .form-btn:disabled:hover::before {
   background: var(--bg-gradient-jet);
+}
+
+.blog-post-item > div:hover .blog-item-title {
+  color: white;
 }
 
 /*-----------------------------------*\

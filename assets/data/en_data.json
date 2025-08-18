@@ -267,7 +267,7 @@
             "date": "03-15-2022",
             "image": "./assets/images/blog/blog-2.jpg",
             "description": "An introduction to cloud technologies and how they are transforming businesses today.",
-            "link": ""
+            "link": "https://example.com/mastering-react"
         },
         {
             "title": "Building Scalable APIs",
