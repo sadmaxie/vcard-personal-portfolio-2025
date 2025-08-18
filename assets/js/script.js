@@ -773,3 +773,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// ---------- LOAD JSON AND UPDATE HTML/META TAGS ----------
+fetch('./assets/web_data.json')
+  .then(response => response.json())
+  .then(data => {
+    // Update title
+    document.title = data.siteTitle;
+    document.getElementById('site-title').textContent = data.siteTitle;
+
+    // Update favicon
+    const favicon = document.getElementById('favicon');
+    if (favicon) favicon.href = data.favicon;
+
+    // Update Open Graph
+    document.getElementById('og-title').setAttribute('content', data.siteTitle);
+    document.getElementById('og-description').setAttribute('content', data.description);
+    document.getElementById('og-image').setAttribute('content', data.image);
+    document.getElementById('og-url').setAttribute('content', data.url);
+
+    // Update Twitter
+    document.getElementById('twitter-title').setAttribute('content', data.siteTitle);
+    document.getElementById('twitter-description').setAttribute('content', data.description);
+    document.getElementById('twitter-image').setAttribute('content', data.image);
+  })
+  .catch(err => console.error('Error loading web_data.json:', err));
