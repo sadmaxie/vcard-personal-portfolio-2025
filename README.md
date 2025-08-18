@@ -313,13 +313,13 @@ Configure the website title, description, and image for social sharing:
 <meta name="twitter:description" content="Explore my portfolio, skills, and projects tw." />
 
 <!-- Add your CV photo here (must be a link to an online image) -->
-<meta property="og:image" content="https://willowy-cheesecake-af2a51d.netlify.app/assets/images/my-avatar.png" />
+<meta property="og:image" content="https://cv-temple.netlify.app/assets/images/my-avatar.png" />
 ```
 What you gonna look to change here is 
 * My Portfolio
 * Explore my portfolio, skills, and projects og.
 * Explore my portfolio, skills, and projects tw.
-* https://willowy-cheesecake-af2a51d.netlify.app/assets/images/my-avatar.png
+* https://cv-temple.netlify.app/assets/images/my-avatar.png
 
 > Note: The image must be publicly accessible for social platforms to display it.
 
